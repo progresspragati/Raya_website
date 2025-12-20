@@ -1,207 +1,193 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Raya — The First Open Knowledge Intelligence</title>
-    <meta name="description"
-        content="Raya: an open, community-first knowledge intelligence. Follow the journey toward a transparent knowledge future." />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        :root {
-            --aqua: #00E6FF;
-            --gold: #FFD369;
-            --deep: #041025;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAYA — The First Open Knowledge Intelligence </title>
+  <meta name="description"
+    content="Raya: an open, community-first knowledge intelligence. Follow the journey toward a transparent knowledge future." />
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        body {
-            background: radial-gradient(ellipse at 10% 10%, rgba(4, 16, 37, 0.92), transparent 20%), linear-gradient(180deg, #021322 0%, #041025 100%);
-            color: #E6EEF6;
-            font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-        }
+  <style>
+    :root {
+      --aqua: #00E6FF;
+      --gold: #FFD369;
+      --deep: #13397b;
+    }
 
-        .glow-aqua {
-            box-shadow: 0 10px 40px rgba(0, 230, 255, 0.08), 0 2px 10px rgba(0, 230, 255, 0.06);
-        }
+    body {
+      background: radial-gradient(ellipse at 10% 10%, rgba(222, 235, 237, 0.92), transparent 20%), linear-gradient(180deg, #e7e9ed 0%, #f2edf1 100%);
+      color: #04396e;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
 
-        .btn-rune {
-            background: linear-gradient(180deg, rgba(0, 230, 255, 0.08), rgba(0, 230, 255, 0.03));
-            border: 1px solid rgba(0, 230, 255, 0.16);
-        }
+    .glow-aqua {
+      box-shadow: 0 6px 24px rgba(0, 230, 255, 0.06);
+    }
 
-        .rune-gold {
-            box-shadow: 0 8px 26px rgba(255, 211, 105, 0.06);
-        }
+    .btn-rune {
+      background: linear-gradient(180deg, rgba(0, 230, 255, 0.08), rgba(0, 230, 255, 0.03));
+      border: 1px solid rgba(0, 230, 255, 0.16);
+    }
 
-        .hero-figure {
-            background: linear-gradient(180deg, rgba(0, 230, 255, 0.04), rgba(0, 230, 255, 0.01));
-            border-radius: 18px;
-            border: 1px solid rgba(0, 230, 255, 0.06);
-        }
+    .rune-gold {
+      box-shadow: 0 8px 26px rgba(255, 211, 105, 0.06);
+    }
 
-        .faux-image {
-            background: linear-gradient(180deg, rgba(0, 230, 255, 0.02), rgba(0, 230, 255, 0.01));
-            height: 460px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .hero-figure {
+      background: linear-gradient(180deg, rgba(0, 230, 255, 0.04), rgba(0, 230, 255, 0.01));
+      border-radius: 18px;
+      border: 1px solid rgba(0, 230, 255, 0.06);
+    }
 
-        .rune-card {
-            background: rgba(255, 210, 105, 0.02);
-            border: 1px solid rgba(255, 210, 105, 0.05);
-            backdrop-filter: blur(6px);
-        }
+    .faux-image {
+      background: linear-gradient(180deg, rgba(0, 230, 255, 0.02), rgba(0, 230, 255, 0.01));
+      height: 460px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        a {
-            text-decoration: none
-        }
+    .rune-card {
+      background: rgba(255, 210, 105, 0.02);
+      border: 1px solid rgba(255, 210, 105, 0.05);
+      backdrop-filter: blur(6px);
+    }
 
-        /* simple subtle animation */
-        @keyframes floaty {
-            0% {
-                transform: translateY(0px)
-            }
+    a {
+      text-decoration: none
+    }
 
-            50% {
-                transform: translateY(-6px)
-            }
+    @keyframes floaty {
+      0% {
+        transform: translateY(0px)
+      }
 
-            100% {
-                transform: translateY(0px)
-            }
-        }
+      50% {
+        transform: translateY(-6px)
+      }
 
-        .floaty {
-            animation: floaty 6s ease-in-out infinite;
-        }
-    </style>
+      100% {
+        transform: translateY(0px)
+      }
+    }
+
+    .floaty {
+      animation: floaty 6s ease-in-out infinite;
+    }
+  </style>
 </head>
 
 <body>
-    <!-- NAVBAR -->
-    <header class="max-w-6xl mx-auto p-6 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-            <div
-                class="w-12 h-12 rounded-lg glow-aqua flex items-center justify-center bg-gradient-to-br from-slate-900/40 to-transparent">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="4" stroke="white" stroke-opacity="0.95" stroke-width="1.2" />
-                    <path d="M12 2v3" stroke="white" stroke-opacity="0.6" stroke-width="1" stroke-linecap="round" />
-                </svg>
-            </div>
-            <div>
-                <div class="font-semibold text-white">Raya</div>
-                <div class="text-xs text-slate-400 -mt-1">Open Knowledge Intelligence</div>
-            </div>
-        </div>
-        <nav class="flex items-center gap-6">
-            <a class="text-slate-300 hover:text-white" href="vision.html">Vision</a>
-            <a class="text-slate-300 hover:text-white" href="journey.html">Journey</a>
-            <a class="text-slate-300 hover:text-white" href="portal.html">Portal</a>
-            <a class="px-4 py-2 rounded-md border border-transparent btn-rune text-sm text-slate-100"
-                href="#follow">Follow</a>
+  <!-- NAVBAR -->
+  <header class="bg-[url('assets/raya_header.jpg')] bg-cover bg-center h-64 flex justify-start items-end px-3">
+    <div class="flex items-center gap-3 mb-0">
+      <div
+        class="w-[7.5rem] h-28 rounded-lg glow-aqua flex items-center justify-center bg-gradient-to-br from-slate-900/40 to-transparent">
+        <img src="assets/raya_logo.jpg" alt="Raya Logo"
+          class="w-24 h-26 object-contain rounded-lg border border-white-200">
+      </div>
+      <div>
+        <div class="font-semibold text-font-Arial text-4xl text-white">Raya</div>
+        <div class="text-xl text-slate-200 -mt-1">An Architecture for a Type-I Civilization</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main class="max-w-6xl ml-auto mr-auto px-6">
+    <section class="gap-3 py-0">
+      <div class="max-w-6xl mx-auto pl-6 pr-0">
+        <nav class="flex justify-end items-right gap-6 py-3">
+          <a class="text-black-900 hover:text-yellow-800" href="vision.html">Vision</a>
+          <a class="text-black-900 hover:text-yellow-800" href="journey.html">Journey</a>
+          <a class="text-black-900 hover:text-yellow-800" href="problem.html">Challenges</a>
+          <a class="text-black-900 hover:text-yellow-800" href="module.html">Module</a>
+          <a class="text-black-900 hover:text-yellow-800" href="portal.html">Portal</a>
+          <a class="px-4 py-2 rounded-md btn-rune text-sm text-blue-900 hover:text-yellow-800" href="#follow">
+            Join
+          </a>
         </nav>
-    </header> 
-    
-    <!-- HERO -->
-    <main class="max-w-6xl mx-auto px-6">
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center py-12">
-            <div class="space-y-6">
-                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Raya: The First Open Knowledge
-                    Intelligence</h1>
-                <p class="text-slate-300 max-w-xl">A step toward a Type I Civilization — transparent, community-first
-                    knowledge for humanity.</p>
-                <div class="flex gap-4 items-center">
-                    <a href="journey.html" class="px-5 py-3 rounded-lg btn-rune text-sm font-medium glow-aqua">Follow
-                        the Journey</a>
-                    <a href="vision.html" class="px-4 py-2 rounded-lg rune-gold text-sm font-medium text-slate-900"
-                        style="background: linear-gradient(180deg, rgba(255,211,105,0.12), rgba(255,211,105,0.04));">Read
-                        the Vision</a>
-                    <a href="portal.html"
-                        class="ml-2 px-4 py-2 rounded-lg border border-slate-700 text-sm text-slate-300 hover:text-white">Enter
-                        the Portal</a>
-                </div>
-                <div class="mt-6 grid grid-cols-3 gap-3">
-                    <div class="rune-card p-4 rounded-md text-xs text-slate-200">
-                        <div class="font-semibold text-sm" style="color:var(--aqua)">Transparency</div>
-                        <div class="text-slate-400 text-[13px] mt-2">Open sources & auditable changelogs.</div>
-                    </div>
-                    <div class="rune-card p-4 rounded-md text-xs text-slate-200">
-                        <div class="font-semibold text-sm" style="color:var(--aqua)">Community</div>
-                        <div class="text-slate-400 text-[13px] mt-2">Collaborate, discuss, and contribute.</div>
-                    </div>
-                    <div class="rune-card p-4 rounded-md text-xs text-slate-200">
-                        <div class="font-semibold text-sm" style="color:var(--aqua)">Evolution</div>
-                        <div class="text-slate-400 text-[13px] mt-2">Incremental growth from Q/A to intelligence.</div>
-                    </div>
-                </div>
-
-                <div class="mt-6 text-sm text-slate-400">
-                    <strong>Elevator:</strong> Raya curates reliable public sources and publishes transparent devlogs so
-                    the public can follow every step of development.
-                </div>
+      </div>
+    </section>
+    <section class="gap-3 items-center py-12">
+      <div class="space-y-6">
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Raya — Open Knowledge Intelligence for Planetary
+          Coordination</h1>
+        <p class="text-slate-800">Building transparent, community-governed intelligence to coordinate energy, resources,
+          and knowledge at a planetary scale.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 items-center py-12">
+          <div class="rune-card p-4 rounded-md text-xs text-slate-200">
+            <div class="font-semibold text-lg" style="color:var(--deep)">How Raya Thinks</div>
+            <div class="text-slate-800 text-[13px] mt-2">Open-source intelligence with auditable models and public development logs.
+</div>
+          </div>
+          <div class="rune-card p-4 rounded-md text-xs text-slate-200">
+            <div class="font-semibold text-lg" style="color:var(--deep)">Vision</div>
+            <div class="text-slate-800 text-[13px] mt-2">A global, community-driven effort to design planetary-scale
+              intelligence.
+            </div>
+          </div>
+          <div class="rune-card p-4 rounded-md text-xs text-slate-200">
+            <div class="font-semibold text-lg" style="color:var(--deep)">Type-I Civilization</div>
+            <div class="text-slate-800 text-[13px] mt-2">A gradual transition from information systems to planetary
+              intelligence.
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3 items-center py-12"> 
+          <div class="rune-card p-4 rounded-md text-xs text-slate-00">
+            <div class="font-semibold text-lg" style="color:var(--deep)">Energy</div>
+            <div class="text-slate-800 text-[13px] mt-2">Simulating renewable transitions, grid coordination, and long-term planetary energy balance.
+</div>
+          </div>
+          <div class="rune-card p-4 rounded-md text-xs text-slate-200">
+            <div class="font-semibold text-lg" style="color:var(--deep)">Water</div>
+            <div class="text-slate-800 text-[13px] mt-2">Understanding water cycles, demand, scarcity, and sustainable distribution systems.
 
             </div>
-
-            <div>
-                <div class="hero-figure p-6 floaty">
-                    <div class="faux-image">
-                        <div class="text-center max-w-[320px]">
-                            <div class="text-3xl font-semibold" style="color:var(--aqua)">Type I Portal</div>
-                            <div class="mt-3 text-xs text-slate-300">Hero artwork placeholder — replace with art asset
-                            </div>
-                            <div class="mt-4 text-xs text-slate-500">Animated glyphs and soft parallax recommended for
-                                final asset.</div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="rune-card p-4 rounded-md text-xs text-slate-200">
+            <div class="font-semibold text-lg" style="color:var(--deep)">Farming</div>
+            <div class="text-slate-800 text-[13px] mt-2">Supporting climate-aware agriculture, food security, and resource-efficient farming systems.
             </div>
-        </section>
-
-        <!-- SHORT NAV CARDS -->
-        <section class="py-8">
-            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-                <a href="journey.html" class="p-6 rounded-2xl rune-card hover:scale-[1.01] transition-transform">
-                    <h3 class="font-semibold" style="color:var(--aqua)">Follow the Journey</h3>
-                    <p class="text-slate-400 mt-2 text-sm">Trace Raya’s milestones, read devlogs, and see progress in
-                        real time.</p>
-                </a>
-                <a href="vision.html" class="p-6 rounded-2xl rune-card hover:scale-[1.01] transition-transform">
-                    <h3 class="font-semibold" style="color:var(--aqua)">Read the Vision</h3>
-                    <p class="text-slate-400 mt-2 text-sm">Explore Raya’s manifesto and the principles guiding
-                        development.</p>
-                </a>
-                <a href="portal.html" class="p-6 rounded-2xl rune-card hover:scale-[1.01] transition-transform">
-                    <h3 class="font-semibold" style="color:var(--aqua)">Enter the Portal</h3>
-                    <p class="text-slate-400 mt-2 text-sm">The interactive gateway to Raya — opening soon. Watch this
-                        space.</p>
-                </a>
+          </div>
+          <div class="rune-card p-4 rounded-md text-xs text-slate-200">
+            <div class="font-semibold text-lg" style="color:var(--deep)">Human Sustainability Index</div>
+            <div class="text-slate-800 text-[13px] mt-2">Measuring human well-being across health, education, environment, and economic stability.
             </div>
-        </section>
+          </div>
+        </div>
+        </div>
+        <div class="mt-6 text-sm text-slate-800">
+          <strong>Elevator:</strong> Raya is a long-term research and community initiative that curates public
+          knowledge, builds open intelligence systems, and documents every stage of its evolution.
 
-        <!-- JOIN -->
-        <section id="follow" class="py-12 bg-gradient-to-b from-transparent to-slate-900/12 rounded-xl p-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-2xl font-semibold">Join the Journey</h2>
-                <p class="mt-2 text-slate-400">Subscribe for devlogs, roadmap updates, and community calls. No spam —
-                    meaningful updates only.</p>
-                <form id="newsletter" class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-                    <input aria-label="email" placeholder="Enter your email"
-                        class="px-4 py-3 rounded-md bg-slate-800/40 border border-slate-700 text-slate-200 w-full sm:w-auto" />
-                    <button class="px-5 py-3 rounded-md btn-rune text-sm font-medium glow-aqua">Subscribe</button>
-                </form>
-                <div class="mt-4 text-xs text-slate-500">You can unsubscribe any time. We respect your privacy.</div>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="hero-figure p-6 floaty">
+          <div class="faux-image">
+            <div class="text-center max-w-[320px]">
+              <div class="text-3xl font-semibold" style="color:var(--aqua)">Type I Portal</div>
+              <div class="mt-3 text-xs text-slate-300">Hero artwork placeholder — replace with art asset
+              </div>
+              <div class="mt-4 text-xs text-slate-500">Animated glyphs and soft parallax recommended for
+                final asset.</div>
             </div>
-        </section>
-
-        <!-- FOOTER -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FOOTER -->
         <footer class="mt-12 py-10 text-slate-400">
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                    <div class="font-semibold text-white">Raya</div>
+                    <div class="font-semibold text-white-200">Raya</div>
                     <div class="text-sm mt-2">From Darkness to Light — tamso mā jyotirgamaya</div>
                 </div>
                 <div>
@@ -247,7 +233,8 @@
                 })
                 .catch(err => console.error("Failed to load Raya Assistant:", err));
         </script>
-    </main>
+  </main>
+  <p class="text-xs text-slate-400 mt-12">
+    Raya is exploratory, open, and long-horizon — not a product, not a promise, but a shared journey.
+  </p>
 </body>
-
-</html>
