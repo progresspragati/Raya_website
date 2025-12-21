@@ -77,6 +77,76 @@
     .floaty {
       animation: floaty 6s ease-in-out infinite;
     }
+
+    /* Planetary System Cards */
+    .planet-card {
+      position: relative;
+      background: linear-gradient(180deg,
+          rgba(255, 255, 255, 0.55),
+          rgba(255, 255, 255, 0.25));
+      border: 1px solid rgba(19, 57, 123, 0.08);
+      border-radius: 14px;
+      padding: 1.2rem;
+      transition:
+        transform 0.45s ease,
+        box-shadow 0.45s ease,
+        border-color 0.45s ease;
+      backdrop-filter: blur(6px);
+    }
+
+    .planet-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: linear-gradient(120deg,
+          rgba(0, 230, 255, 0.08),
+          transparent 60%);
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      pointer-events: none;
+    }
+
+    .planet-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 230, 255, 0.35);
+    }
+
+    .planet-card:hover::before {
+      opacity: 1;
+    }
+
+    .planet-icon {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .planet-icon img {
+      max-height: 100%;
+      transition: transform 0.5s ease;
+    }
+
+    .planet-card:hover .planet-icon img {
+      transform: scale(1.04);
+    }
+
+    .planet-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--deep);
+      margin-top: 0.4rem;
+    }
+
+    .planet-desc {
+      font-size: 0.82rem;
+      color: #334155;
+      margin-top: 0.35rem;
+      line-height: 1.45;
+    }
   </style>
 </head>
 
@@ -138,59 +208,72 @@
             </div>
           </div>
         </div>
-      <section class="mt-20 pt-8 border-t border-slate-200">
-        <div class="mb-8 max-w-4xl">
-          <h2 class="text-2xl font-semibold" style="color:var(--deep)">
-            Planetary Systems Raya Explores
-          </h2>
-          <p class="text-slate-800">
-            Raya approaches planetary intelligence by studying foundational systems that sustain civilization and human
-            well-being.
-          </p>
+        <section class="mt-20 pt-8 border-t border-slate-200">
+          <div class="mb-8 max-w-4xl">
+            <h2 class="text-2xl font-semibold" style="color:var(--deep)">
+              Planetary Systems Raya Explores
+            </h2>
+            <p class="text-slate-800">
+              Raya approaches planetary intelligence by studying foundational systems that sustain civilization and
+              human
+              well-being.
+            </p>
+          </div>
+          <!-- Planetary Systems Raya Explores  -->
+        </section>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-stretch py-2">
+
+          <!-- Energy -->
+          <div class="planet-card">
+            <div class="planet-icon">
+              <img src="assets/raya_energy.jpg" alt="Raya Energy" class="rounded-lg">
+            </div>
+            <div class="planet-title">Energy</div>
+            <div class="planet-desc">
+              Simulating renewable transitions, grid coordination, and long-term planetary energy balance.
+            </div>
+          </div>
+
+          <!-- Water -->
+          <div class="planet-card">
+            <div class="planet-icon">
+              <img src="assets/raya_water.jpg" alt="Raya Water" class="rounded-lg">
+            </div>
+            <div class="planet-title">Water</div>
+            <div class="planet-desc">
+              Understanding water cycles, demand, scarcity, and sustainable distribution systems.
+            </div>
+          </div>
+
+          <!-- Farming -->
+          <div class="planet-card">
+            <div class="planet-icon">
+              <img src="assets/raya_farming.jpg" alt="Raya Farming" class="rounded-lg">
+            </div>
+            <div class="planet-title">Farming</div>
+            <div class="planet-desc">
+              Supporting climate-aware agriculture, food security, and resource-efficient farming systems.
+            </div>
+          </div>
+
+          <!-- Human Sustainability -->
+          <div class="planet-card">
+            <div class="planet-icon">
+              <img src="assets/raya_hsi.jpg" alt="Raya Human Sustainability" class="rounded-lg">
+            </div>
+            <div class="planet-title">Human Sustainability</div>
+            <div class="planet-desc">
+              Measuring human well-being across health, education, environment, and economic stability.
+            </div>
+          </div>
+
         </div>
-      </section>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-3 items-center py-0">
-          <div class="rune-card p-4 rounded-md text-xs text-slate-00">
-            <img src="assets/raya_energy.jpg" alt="Raya_energy" 
-            class="w-30 h-36 object-contain rounded-lg border border-white-200">
-            <div class="font-semibold text-lg" style="color:var(--deep)">Energy</div>
-            <div class="text-slate-800 text-[13px] mt-2">Simulating renewable transitions, grid coordination, and
-              long-term planetary energy balance.
-            </div>
-          </div>
 
-          <div class="rune-card p-4 rounded-md text-xs text-slate-200">
-            <img src="assets/raya_water.jpg" alt="Raya_water" 
-            class="w-30 h-36 object-contain rounded-lg border border-white-200">
-            <div class="font-semibold text-lg" style="color:var(--deep)">Water</div>
-            <div class="text-slate-800 text-[13px] mt-2">Understanding water cycles, demand, scarcity, and sustainable
-              distribution systems.
+        <div class="mt-6 text-sm text-slate-800">
+          <strong>Elevator:</strong> Raya is a long-term research and community initiative that curates public
+          knowledge, builds open intelligence systems, and documents every stage of its evolution.
 
-            </div>
-          </div>
-          <div class="rune-card p-4 rounded-md text-xs text-slate-200">
-            <img src="assets/raya_farming.jpg" alt="Raya_farming" 
-            class="w-30 h-36 object-contain rounded-lg border border-white-200">
-            <div class="font-semibold text-lg" style="color:var(--deep)">Farming</div>
-            <div class="text-slate-800 text-[13px] mt-2">Supporting climate-aware agriculture, food security, and
-              resource-efficient farming systems.
-            </div>
-          </div>
-          <div class="rune-card p-4 rounded-md text-xs text-slate-200">
-            <img src="assets/raya_hsi.jpg" alt="Raya_HSI" 
-            class="w-30 h-36 object-contain rounded-lg border border-white-200">
-            <div class="font-semibold text-lg" style="color:var(--deep)">Human Sustainability</div>
-            <div class="text-slate-800 text-[13px] mt-2">Measuring human well-being across health, education,
-              environment, and economic stability.
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="mt-6 text-sm text-slate-800">
-        <strong>Elevator:</strong> Raya is a long-term research and community initiative that curates public
-        knowledge, builds open intelligence systems, and documents every stage of its evolution.
-
-      </div>
 
       </div>
 
