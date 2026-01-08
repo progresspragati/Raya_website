@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VISION OF RAYA</title>
+    <meta name="description"
+        content="Raya: an open, community-first knowledge intelligence. Follow the journey toward a transparent knowledge future." />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+    <style>
+        :root {
+            --aqua: #00E6FF;
+            --gold: #FFD369;
+            --deep: #13397b;
+        }
+
+        body {
+            background: #596072;
+            color: #d8e1ea;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+
+        .glow-aqua {
+            box-shadow: 0 6px 24px rgba(0, 230, 255, 0.06);
+        }
+
+        .btn-rune {
+            background: linear-gradient(180deg, rgba(13, 13, 169, 0.08), rgba(0, 230, 255, 0.03));
+            border: 3px solid rgba(10, 7, 106, 0.16);
+            color: #000080;
+        }
+
+        .rune-gold {
+            box-shadow: 0 8px 26px rgba(255, 211, 105, 0.06);
+        }
+
+        .hero-figure {
+            background: linear-gradient(180deg, rgba(0, 230, 255, 0.04), rgba(0, 230, 255, 0.01));
+            border-radius: 18px;
+            border: 1px solid rgba(0, 230, 255, 0.06);
+        }
+
+        .faux-image {
+            background: linear-gradient(180deg, rgba(0, 230, 255, 0.02), rgba(0, 230, 255, 0.01));
+            height: 460px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rune-card {
+            background: rgba(255, 210, 105, 0.02);
+            border: 1px solid rgba(255, 210, 105, 0.05);
+            backdrop-filter: blur(6px);
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        @keyframes floaty {
+            0% {
+                transform: translateY(0px)
+            }
+
+            50% {
+                transform: translateY(-6px)
+            }
+
+            100% {
+                transform: translateY(0px)
+            }
+        }
+
+        .floaty {
+            animation: floaty 6s ease-in-out infinite;
+        }
+
+        /* Planetary System Cards */
+        .planet-card {
+            position: relative;
+            background: linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.55),
+                    rgba(42, 95, 186, 0.25));
+            border: 3px solid rgba(4, 37, 95, 0.08);
+            border-radius: 8px;
+            padding: 1.2rem;
+            transition:
+                transform 0.45s ease,
+                box-shadow 0.45s ease,
+                border-color 0.45s ease;
+            backdrop-filter: blur(6px);
+            width: 450px;
+            height: 350px;
+        }
+
+        .planet-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 14px;
+            background: linear-gradient(120deg,
+                    rgba(0, 230, 255, 0.08),
+                    transparent 60%);
+            opacity: 0;
+            transition: opacity 0.45s ease;
+            pointer-events: none;
+        }
+
+        .planet-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+            border-color: rgba(0, 230, 255, 0.35);
+        }
+
+        .planet-card:hover::before {
+            opacity: 1;
+        }
+
+        .planet-icon {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .planet-icon img {
+            max-height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .planet-card:hover .planet-icon img {
+            transform: scale(1.04);
+        }
+
+        .planet-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--deep);
+            margin-top: 0.4rem;
+        }
+
+        .planet-desc {
+            font-size: 0.82rem;
+            color: #334155;
+            margin-top: 0.35rem;
+            line-height: 1.45;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <header
+        class="bg-[url('../assets/vision_earth.jpg')] bg-cover bg-center h-[10rem] flex justify-start items-end px-3">
+        <section class="gap-3 py-0">
+            <div>
+                <h1 class="text-white-900 text-4xl font-bold my-15 mx-15 mb-15">VISION OF RAYA</h1>
+                <nav class="flex justify-start items-left gap-8 py-3 mx-15">
+                    <a class="text-white-900 hover:text-yellow-800" href="public/vision2.html">Why Earth Is Not Yet a
+                        Type-1 Civilization</a>
+                    <a class="text-white-900 hover:text-yellow-800" href="public/journey.html">What Changes When
+                        Intelligence Becomes Planetary</a>
+                    <a class="text-white-900 hover:text-yellow-800" href="public/problem.html">Why RAYA Is Needed</a>
+                    <a class="text-white-900 hover:text-yellow-800" href="public/module.html">What Future RAYA Is Trying
+                        to Prevent — and Enable</a>
+                </nav>
+            </div>
+        </section>
+    </header>
+
+    <!-- HERO -->
+    <div class="bg-[url('../assets/earth_type_0.73.jpg')] bg-cover bg-center">
+        <main class=" max-w-8xl mx-26">
+        <section>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-100 items-stretch py-14 md:h-[30rem]">
+                <div onclick="location.href='vision_page2_1.html'" class="py-14">
+                    <div class="planet-card">
+                        <div class="planet-icon">
+                            <img src="../assets/fragmented_earth.jpg" alt="fragmented_earth" class="rounded-lg">
+                        </div>
+                        <div class="planet-title">Why Earth Is Not Yet a Type-1 Civilization</div>
+                        <div class="planet-desc">
+                            Because planetary systems operate as one — but intelligence does not.
+                        </div>
+                        <div class="my-10 mx-15 px-15">
+                        <button class="btn-rune px-2">Know More</button>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="location.href='vision_page2_2.html'" class="mx-15 py-12">
+                    <div class="planet-card">
+                        <div class="planet-icon">
+                            <img src="../assets/network.jpg" alt="Raya Energy" class="rounded-lg">
+                        </div>
+                        <div class="planet-title">What Changes When Intelligence Becomes Planetary</div>
+                        <div class="planet-desc">
+                            A shift in scale — not speed — transforms coordination, governance, and foresight.
+                        </div>
+                        <div class="my-4 mx-15 px-15">
+                        <button class="btn-rune px-2">Know More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-100 items-stretch py-14 md:h-[30rem]">
+                <div onclick="location.href='vision_page2_3.html'" class="py-14">
+                    <div class="planet-card">
+                        <div class="planet-icon">
+                            <img src="../assets/intersecting_domain.jpg" alt="fragmented_earth" class="rounded-lg">
+                        </div>
+                        <div class="planet-title">Why RAYA Is Needed</div>
+                        <div class="planet-desc">
+                            Because no government or company is designed to coordinate intelligence at planetary scale.
+                        </div>
+                        <div class="my-10 mx-15 px-15">
+                        <button class="btn-rune px-2">Know More</button>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="location.href='vision_page2_4.html'" class="mx-15 py-12">
+                    <div class="planet-card">
+                        <div class="planet-icon">
+                            <img src="../assets/globe.jpg" alt="Raya Energy" class="rounded-lg">
+                        </div>
+                        <div class="planet-title">What Future RAYA Is Trying to Prevent — and Enable</div>
+                        <div class="planet-desc">
+                            Civilization does not collapse suddenly — it fractures without foresight.
+                        </div>
+                        <div class="my-4 mx-15 px-15">
+                        <button class="btn-rune px-2">Know More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="mt-12 text-slate-400">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <div class="font-semibold text-white-200">Raya</div>
+          <div class="text-sm mt-2">From Darkness to Light — tamso mā jyotirgamaya</div>
+        </div>
+        <div>
+          <div class="font-semibold">Explore</div>
+          <div class="mt-2 text-sm grid gap-2">
+            <a href="../homepage.html" class="text-slate-400">Home</a>
+            <a href="public/vision_main.html" class="text-slate-400">Vision</a>
+            <a href="public/journey.html" class="text-slate-400">Journey</a>
+            <a href="public/portal.html" class="text-slate-400">Portal</a>
+          </div>
+        </div>
+        <div>
+          <div class="font-semibold">Contact</div>
+          <div class="mt-2 text-sm">hello@raya.org</div>
+        </div>
+      </div>
+      <div class="max-w-6xl mx-auto mt-8 text-center text-xs text-slate-600">© 2025 Raya — All Rights Reserved
+      </div>
+    </footer>
+
+</body>
