@@ -217,12 +217,14 @@
     }
 
     /* Navbar & Mobile Menu Styles */
-    .nav-container {
+    #navbar-placeholder {
       position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
       z-index: 50;
+    }
+
+    .nav-container {
+      width: 100%;
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
