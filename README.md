@@ -1,6 +1,8 @@
 # RAYA — Open Knowledge Intelligence
 
-## 🚀 TL;DR
+## 🚀
+
+See the [Design Doc](doc/DESIGN_DOC.md) for architectural details.
 
 **RAYA** is an open-source, community-first initiative building a **Planetary Coordination Architecture**. It aims to create a transparent, auditable intelligence system to manage Earth's energy, water, and resources, guiding humanity toward a **Type-I Civilization**.
 
@@ -22,7 +24,7 @@ Raya is not just a product; it’s an evolving architecture for planetary-scale 
 ```bash
 ├── assets/             # Branding, icons, and planetary theme imagery
 ├── data/               # Project data and research files
-├── doc/                # Strategic vision docs and PPTX presentations
+├── doc/                # Strategic vision docs, presentations, and [Design Doc](doc/DESIGN_DOC.md)
 ├── public/             # Main site pages (Vision, Journey, Portal, etc.)
 ├── src/
 │   └── components/     # Reusable UI components (e.g., Raya Assistant)
@@ -49,8 +51,10 @@ Since the website uses the `Fetch API` to load modular components (like the Raya
 
 ## 🗺️ Navigation Guide
 
+- **Home:** [index.html](index.html) — Back to the start.
 - **Vision:** [public/vision_main.html](public/vision_main.html) — The "Why" behind Raya.
 - **Journey:** [public/journey.html](public/journey.html) — Roadmap and milestones for 2025–2026.
+- **Experiments:** [public/old/experiments.html](public/old/experiments.html) — Interactive demos and prototypes.
 - **Portal:** [public/portal.html](public/portal.html) — Gateway to the intelligence interface.
 - **Challenges:** [public/raya_problem.html](public/raya_problem.html) — Global coordination failures Raya aims to solve.
 

@@ -12,6 +12,49 @@ const SYSTEM_CONFIG = {
   }
 };
 
+function initializeNavbar() {
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const navContainer = document.querySelector('.nav-container');
+
+  if (!toggle || !menu) return;
+
+  // Toggle Menu
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isActive = menu.classList.toggle('active');
+    toggle.classList.toggle('active');
+    toggle.setAttribute('aria-expanded', isActive);
+  });
+
+  // Close on Outside Click
+  document.addEventListener('click', (e) => {
+    if (menu.classList.contains('active') && !menu.contains(e.target) && !toggle.contains(e.target)) {
+      menu.classList.remove('active');
+      toggle.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('active')) {
+      menu.classList.remove('active');
+      toggle.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Scroll Behavior
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navContainer.classList.add('scrolled');
+    } else {
+      navContainer.classList.remove('scrolled');
+    }
+  });
+}
+
 function loadLayout() {
   const elements = {
     'navbar-placeholder': 'src/components/navbar.html',
@@ -22,49 +65,34 @@ function loadLayout() {
   const isPublic = window.location.pathname.includes('/public/');
   const prefix = isPublic ? '../' : '';
 
-  Object.entries(elements).forEach(([id, path]) => {
+  const promises = Object.entries(elements).map(([id, path]) => {
     const container = document.getElementById(id);
-    if (!container) return;
+    if (!container) return Promise.resolve();
 
-    fetch(prefix + path)
+    return fetch(prefix + path)
       .then(res => res.text())
       .then(html => {
         if (isPublic) {
-          // Robust path correction for being deep inside /public/
-          // Note: vision-nav links are already root-at-public, so they don't need correction
-          // if they are being loaded by a page already in public/
-          
-          // Only correct global navbar/footer links if they point to public/
           if (id !== 'vision-nav-placeholder') {
             html = html.replace(/href="public\//g, 'href="');
             html = html.replace(/href="index.html"/g, 'href="../index.html"');
             html = html.replace(/src="assets\//g, 'src="../assets/');
           }
-        } else {
-           // If we are in root and loading vision-nav, the links shouldn't change
         }
-
         container.innerHTML = html;
 
-        // Post-load injection for Environment and Build info
         if (id === 'footer-placeholder') {
           const envEl = document.getElementById('env-label');
           const buildEl = document.getElementById('build-label');
-          
-          if (envEl) {
-            envEl.textContent = SYSTEM_CONFIG.ENV;
-            if (SYSTEM_CONFIG.ENV === 'PROD') {
-              envEl.classList.remove('bg-amber-500/10', 'text-amber-500', 'border-amber-500/20');
-              envEl.classList.add('bg-emerald-500/10', 'text-emerald-500', 'border-emerald-500/20');
-            }
-          }
-          
-          if (buildEl) {
-            buildEl.textContent = `v${SYSTEM_CONFIG.BUILD.VERSION}-b${SYSTEM_CONFIG.BUILD.NUMBER}`;
-          }
+          if (envEl) envEl.textContent = SYSTEM_CONFIG.ENV;
+          if (buildEl) buildEl.textContent = `v${SYSTEM_CONFIG.BUILD.VERSION}-b${SYSTEM_CONFIG.BUILD.NUMBER}`;
         }
       })
       .catch(err => console.error(`Failed to load component ${id}:`, err));
+  });
+
+  Promise.all(promises).then(() => {
+    initializeNavbar();
   });
 }
 

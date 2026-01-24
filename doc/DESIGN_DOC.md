@@ -10,9 +10,9 @@
 
 The site is built as a **Modular Static Site** using vanilla technologies for maximum performance and auditability.
 
-- **Modular Loading**: Uses a custom `layout-loader.js` (Fetch API) to inject shared components like the Navbar, Footer, and Raya Assistant.
+- **Modular Loading**: Uses a custom `layout-loader.js` (Fetch API) to inject shared components like the Navbar, Footer, and Raya Assistant. It includes post-fetch initialization logic for interactive elements like mobile menus and scroll listeners.
 - **Path Management**: Automated path normalization ensures components work seamlessly whether accessed from the `root` or deep within the `/public` directory.
-- **Version Control**: Integrated build tracking (`v1.2.4`) and environment labeling (DEV/PROD) visible in the footer.
+- **Sticky Navigation**: Implements a `sticky` positioning system that keeps the primary navigation accessible while maintaining a clean layout, especially below deep scrolly hero sections.
 
 ---
 
@@ -22,8 +22,9 @@ The visual language reflects a "Planetary Intelligence" theme, combining scienti
 
 ### 💎 Aesthetics
 
-- **Glassmorphism**: UI cards use `backdrop-filter: blur()` and semi-transparent gradients.
+- **Glassmorphism**: UI cards and the sticky navigation bar use `backdrop-filter: blur()` and semi-transparent gradients for a layered, futuristic feel.
 - **Dynamic Motion**: Subtle `floaty` keyframe animations and hover-based scaling on interactive elements.
+- **Mobile Accessibility**: Includes a responsive hamburger menu with keyboard support (ESC key closure and tab focus focusability).
 - **Color Palette**:
   - `--aqua` (#00E6FF): Primary accent for technology and energy.
   - `--deep` (#13397b): Foundation color for structure and text.
@@ -44,7 +45,8 @@ The visual language reflects a "Planetary Intelligence" theme, combining scienti
 1.  **Planetary Pillars**: Interactive cards on the landing page describing Raya’s research into Energy, Water, Farming, and Human Sustainability.
 2.  **Vision Portal**: A comprehensive breakdown of the "Why" behind the project (`vision_main.html`).
 3.  **Journey Tracker**: A roadmap detailing milestones from 2025 to 2026 (`journey.html`).
-4.  **Raya Assistant**: A floating modular component that provides context-aware guidance across the site.
+4.  **Integrated Navigation**: A globally consistent, responsive navigation menu sitting below scrolly animations on the home page and sticky across all subpages.
+5.  **Raya Assistant**: A floating modular component that provides context-aware guidance across the site.
 
 ---
 
