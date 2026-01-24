@@ -36,6 +36,14 @@
         </div>
       </div>
 
+      <!-- PLAY BUTTON (TOP RIGHT) -->
+      <div class="absolute top-8 right-8 z-20 flex items-center gap-4">
+        <button id="play-toggle" class="px-4 py-2 bg-slate-900/40 hover:bg-cyan-500/40 border border-white/10 rounded-full text-cyan-100 text-sm font-bold flex items-center gap-2 backdrop-blur-md transition-all cursor-pointer group">
+          <span id="play-icon" class="w-2 h-2 bg-red-400 rounded-full animate-pulse transition-transform"></span>
+          <span id="play-text">PAUSE</span>
+        </button>
+      </div>
+
       <canvas id="planetary-canvas" class="w-full h-full"></canvas>
       
       <div id="story-overlay" class="absolute inset-0 pointer-events-none flex items-center justify-center">

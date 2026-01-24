@@ -20,6 +20,9 @@ const images = [];
 let currentRawFrame = 0;
 let smoothFrame = 0;
 let lastRenderedFrame = -1;
+let isAutoPlaying = true;
+let autoPlaySpeed = 0.5; // Frames per frame (at 60fps)
+let autoPlayDirection = 1; // 1 for forward, -1 for backward
 
 // 1. Preloading Logic
 function preloadImages() {
@@ -55,14 +58,25 @@ function initScrolly() {
 
     // The Animation Loop (Running at 60fps)
     function animate() {
-        // Interpolation logic: target smoothFrame towards currentRawFrame
-        // 0.1 is the damping factor. Adjust for more/less "floaty" feel.
+        if (isAutoPlaying) {
+            currentRawFrame += autoPlaySpeed * autoPlayDirection;
+            
+            // Ping Pong Logic
+            if (currentRawFrame >= frameCount - 1) {
+                currentRawFrame = frameCount - 1;
+                autoPlayDirection = -1;
+            } else if (currentRawFrame <= 0) {
+                currentRawFrame = 0;
+                autoPlayDirection = 1;
+            }
+        }
+
+        // Interpolation logic
         const delta = currentRawFrame - smoothFrame;
         smoothFrame += delta * 0.15;
 
         const frameIndex = Math.floor(smoothFrame);
         
-        // Only re-draw if the frame index has changed to save CPU/GPU
         if (frameIndex !== lastRenderedFrame) {
             renderCanvas(frameIndex);
             lastRenderedFrame = frameIndex;
@@ -73,8 +87,36 @@ function initScrolly() {
     }
     animate();
 
+    // Play/Pause Toggle
+    const playToggle = document.getElementById('play-toggle');
+    const playText = document.getElementById('play-text');
+    const playIcon = document.getElementById('play-icon');
+
+    if (playToggle) {
+        playToggle.addEventListener('click', () => {
+            isAutoPlaying = !isAutoPlaying;
+            if (isAutoPlaying) {
+                playText.innerText = 'PAUSE';
+                playIcon.classList.add('animate-pulse', 'bg-red-400');
+                playIcon.classList.remove('bg-cyan-400');
+            } else {
+                playText.innerText = 'AUTO-PLAY';
+                playIcon.classList.remove('animate-pulse', 'bg-red-400');
+                playIcon.classList.add('bg-cyan-400');
+            }
+        });
+    }
+
     // Listen for scroll
     window.addEventListener('scroll', () => {
+        // Stop auto-play if user is scrolling to take control
+        if (isAutoPlaying) {
+            isAutoPlaying = false;
+            if (playText) playText.innerText = 'AUTO-PLAY';
+            if (playIcon) playIcon.classList.remove('animate-pulse', 'bg-red-400');
+            if (playIcon) playIcon.classList.add('bg-cyan-400');
+        }
+
         const scrollTop = window.scrollY;
         const section = document.getElementById('scrolly-section');
         if (!section) return;
