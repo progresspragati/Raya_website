@@ -15,7 +15,8 @@ const SYSTEM_CONFIG = {
 function loadLayout() {
   const elements = {
     'navbar-placeholder': 'src/components/navbar.html',
-    'footer-placeholder': 'src/components/footer.html'
+    'footer-placeholder': 'src/components/footer.html',
+    'vision-nav-placeholder': 'src/components/vision-nav.html'
   };
 
   const isPublic = window.location.pathname.includes('/public/');
@@ -30,10 +31,17 @@ function loadLayout() {
       .then(html => {
         if (isPublic) {
           // Robust path correction for being deep inside /public/
-          // Ensure shared component relative links point to the right place
-          html = html.replace(/href="public\//g, 'href="');
-          html = html.replace(/href="index.html"/g, 'href="../index.html"');
-          html = html.replace(/src="assets\//g, 'src="../assets/');
+          // Note: vision-nav links are already root-at-public, so they don't need correction
+          // if they are being loaded by a page already in public/
+          
+          // Only correct global navbar/footer links if they point to public/
+          if (id !== 'vision-nav-placeholder') {
+            html = html.replace(/href="public\//g, 'href="');
+            html = html.replace(/href="index.html"/g, 'href="../index.html"');
+            html = html.replace(/src="assets\//g, 'src="../assets/');
+          }
+        } else {
+           // If we are in root and loading vision-nav, the links shouldn't change
         }
 
         container.innerHTML = html;
@@ -45,7 +53,6 @@ function loadLayout() {
           
           if (envEl) {
             envEl.textContent = SYSTEM_CONFIG.ENV;
-            // Optional: style based on env
             if (SYSTEM_CONFIG.ENV === 'PROD') {
               envEl.classList.remove('bg-amber-500/10', 'text-amber-500', 'border-amber-500/20');
               envEl.classList.add('bg-emerald-500/10', 'text-emerald-500', 'border-emerald-500/20');
