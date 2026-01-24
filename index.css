@@ -186,6 +186,9 @@
       margin-bottom: 1rem;
     }
 
+    /* Custom Styles */
+    .h-\[300vh\] { height: 300vh; }
+
     .loading-bar {
       height: 100%;
       background-color: var(--scrolly-cyan);

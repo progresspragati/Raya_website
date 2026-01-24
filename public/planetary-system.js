@@ -11,106 +11,106 @@ const loadingText = document.getElementById('loading-text');
 const storyTexts = document.querySelectorAll('.story-text');
 
 // Configuration
-const frameCount = 192; // Using all available frames
+const frameCount = 192;
 const imageBaseUrl = 'public/animation sequence/';
-const imagePrefix = ''; // Naming is 00001.jpg, so no prefix like raya_seq_
 const imageExt = '.jpg';
 
 // State
 const images = [];
-const imageSequence = {
-    frame: 0
-};
+let currentRawFrame = 0;
+let smoothFrame = 0;
+let lastRenderedFrame = -1;
 
 // 1. Preloading Logic
 function preloadImages() {
     let loadedCount = 0;
-
     for (let i = 1; i <= frameCount; i++) {
         const img = new Image();
-        // Format: 00001, 00002, ..., 00120
         const frameNumber = i.toString().padStart(5, '0');
         img.src = `${imageBaseUrl}${frameNumber}${imageExt}`;
-        
         img.onload = () => {
             loadedCount++;
             const progress = Math.floor((loadedCount / frameCount) * 100);
-            loadingBar.style.width = `${progress}%`;
-            loadingText.innerText = `${progress}%`;
-
-            if (loadedCount === frameCount) {
-                initScrolly();
-            }
-        };
-
-        img.onerror = () => {
-            console.error(`Failed to load image: ${img.src}`);
-            loadedCount++; // Still increment to avoid getting stuck
+            if (loadingBar) loadingBar.style.width = `${progress}%`;
+            if (loadingText) loadingText.innerText = `${progress}%`;
             if (loadedCount === frameCount) initScrolly();
         };
-
+        img.onerror = () => {
+            loadedCount++;
+            if (loadedCount === frameCount) initScrolly();
+        };
         images.push(img);
     }
 }
 
 // 2. Initialize Scroll Logic
 function initScrolly() {
-    // Hide loading screen with a fade
-    loadingScreen.style.opacity = '0';
-    loadingScreen.style.transition = 'opacity 0.5s ease-out';
-    setTimeout(() => {
-        loadingScreen.style.display = 'none';
-        document.body.style.overflowY = 'auto'; // Re-enable scroll if disabled
-    }, 500);
+    if (loadingScreen) {
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => loadingScreen.style.display = 'none', 500);
+    }
 
-    // Initial draw
-    renderCanvas(0);
-    updateStoryText(0);
+    // Set initial canvas size
+    resizeCanvas();
+
+    // The Animation Loop (Running at 60fps)
+    function animate() {
+        // Interpolation logic: target smoothFrame towards currentRawFrame
+        // 0.1 is the damping factor. Adjust for more/less "floaty" feel.
+        const delta = currentRawFrame - smoothFrame;
+        smoothFrame += delta * 0.15;
+
+        const frameIndex = Math.floor(smoothFrame);
+        
+        // Only re-draw if the frame index has changed to save CPU/GPU
+        if (frameIndex !== lastRenderedFrame) {
+            renderCanvas(frameIndex);
+            lastRenderedFrame = frameIndex;
+            updateStoryText((frameIndex / (frameCount - 1)) * 100);
+        }
+
+        requestAnimationFrame(animate);
+    }
+    animate();
 
     // Listen for scroll
     window.addEventListener('scroll', () => {
         const scrollTop = window.scrollY;
         const section = document.getElementById('scrolly-section');
+        if (!section) return;
+
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         const windowHeight = window.innerHeight;
 
-        // Calculate progress within the 500vh section
-        // We subtract windowHeight from sectionHeight because the sticky container 
-        // stays pinned for exactly its own height minus the viewport.
         const scrollFraction = Math.max(0, Math.min(1, Math.max(0, scrollTop - sectionTop) / (sectionHeight - windowHeight)));
         
-        const frameIndex = Math.min(
-            frameCount - 1,
-            Math.floor(scrollFraction * frameCount)
-        );
+        // Target the frame we want to be at
+        currentRawFrame = scrollFraction * (frameCount - 1);
+    }, { passive: true });
 
-        requestAnimationFrame(() => {
-            renderCanvas(frameIndex);
-            updateStoryText(scrollFraction * 100);
-        });
-    });
-
-    // Resize handling
-    window.addEventListener('resize', () => renderCanvas(imageSequence.frame));
+    // Resize handling (Debounced or separate to keep render loop fast)
+    window.addEventListener('resize', resizeCanvas);
 }
 
-// 3. Render Logic
-function renderCanvas(index) {
-    imageSequence.frame = index;
-    const img = images[index];
-    if (!img) return;
-
-    // Reset canvas dimensions to match viewport for "object-fit" math
+function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    // Re-render current frame on resize
+    renderCanvas(Math.floor(smoothFrame));
+}
 
-    // Object-fit: Cover logic
-    const imgWidth = img.width;
-    const imgHeight = img.height;
+// 3. Render Logic (Pure Drawing)
+function renderCanvas(index) {
+    const img = images[index];
+    if (!img || !img.complete) return;
+
     const canvasWidth = canvas.width;
     const canvasHeight = canvas.height;
+    const imgWidth = img.width;
+    const imgHeight = img.height;
 
+    // Object-fit: Cover logic
     const ratio = Math.max(canvasWidth / imgWidth, canvasHeight / imgHeight);
     const newWidth = imgWidth * ratio;
     const newHeight = imgHeight * ratio;
@@ -127,8 +127,6 @@ function updateStoryText(percentage) {
     textElements.forEach(text => {
         const start = parseFloat(text.dataset.start);
         const end = parseFloat(text.dataset.end);
-
-        // Fixed match logic to ensure 0% triggers correctly
         if (percentage >= start && percentage <= end) {
             text.classList.add('opacity-100');
             text.classList.remove('opacity-0');
@@ -139,5 +137,4 @@ function updateStoryText(percentage) {
     });
 }
 
-// Start preloading
 window.onload = preloadImages;
