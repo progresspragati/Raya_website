@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiments — Raya Knowledge Intelligence</title>
+  <meta name="description"
+    content="Browse through a collection of demo experiments powered by Raya Open Knowledge Intelligence." />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="../index.css">
+</head>
+
+<body class="bg-slate-50">
+  <div id="navbar-placeholder">
+    <!-- Shared Navbar Loaded Here -->
+  </div>
+
+  <main class="max-w-6xl mx-auto px-6 py-12">
+    <header class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-blue-900">
+        🔬 Raya Experiments
+      </h1>
+      <p class="text-slate-600 mt-4 text-lg max-w-2xl">
+        Explore our collection of interactive simulations and knowledge visualizations. These represent early steps toward planetary-scale intelligence.
+      </p>
+    </header>
+
+    <!-- Experiments Grid -->
+    <div id="experiments-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Cards injected via JS -->
+    </div>
+
+    <!-- Raya Assistant -->
+    <div id="raya-assistant-container" class="mt-20"></div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../src/scripts/layout-loader.js"></script>
+  <script src="../src/scripts/pages/experiments.js"></script>
+
+  <script>
+    fetch("../src/components/raya-assistant.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("raya-assistant-container").innerHTML = html;
+        const container = document.getElementById("raya-assistant-container");
+        const scripts = container.querySelectorAll("script");
+        scripts.forEach(oldScript => {
+          const newScript = document.createElement("script");
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+          document.body.appendChild(newScript);
+          oldScript.remove();
+        });
+      })
+      .catch(err => console.error("Failed to load Raya Assistant:", err));
+  </script>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
+</body>
+
+</html>
