@@ -237,29 +237,6 @@
 
     <script src="public/planetary-system.js"></script>
     <script src="src/scripts/layout-loader.js"></script>
-    <script>
-      fetch("src/components/raya-assistant.html")
-        .then(res => res.text())
-        .then(html => {
-          // Insert HTML
-          document.getElementById("raya-assistant-container").innerHTML = html;
-
-          // Extract and run any <script> inside the loaded file
-          const container = document.getElementById("raya-assistant-container");
-          const scripts = container.querySelectorAll("script");
-          scripts.forEach(oldScript => {
-            const newScript = document.createElement("script");
-            if (oldScript.src) {
-              newScript.src = oldScript.src; // external script
-            } else {
-              newScript.textContent = oldScript.textContent; // inline script
-            }
-            document.body.appendChild(newScript);
-            oldScript.remove();
-          });
-        })
-        .catch(err => console.error("Failed to load Raya Assistant:", err));
-    </script>
   </main>
 
     <!-- FOOTER -->
