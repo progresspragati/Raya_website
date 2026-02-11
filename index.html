@@ -12,44 +12,69 @@
    <link rel="stylesheet" href="index.css">
 </head>
 
-<body>
-  <!-- NAVBAR -->
-  <header class="bg-[url('assets/raya_header.jpg')] bg-cover bg-center h-64 flex justify-start items-end px-3">
-    <div class="flex items-center gap-3 mb-0">
-      <div
-        class="w-[7.5rem] h-28 rounded-lg glow-aqua flex items-center justify-center bg-gradient-to-br from-slate-900/40 to-transparent">
-        <img src="assets/raya_logo.jpg" alt="Raya Logo"
-          class="w-24 h-26 object-contain rounded-lg border border-white-200">
+<body class="bg-slate-50">
+  <!-- Loading Bar Section -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="text-2xl font-bold mb-4 tracking-widest uppercase">Loading System...</div>
+    <div class="loading-bar-container">
+      <div id="loading-bar" class="loading-bar" style="width: 0%;"></div>
+    </div>
+    <div id="loading-text" class="text-scrolly-cyan text-sm">0%</div>
+  </div>
+
+  <!-- SCROLLYTELLING HERO -->
+  <section id="scrolly-section" class="relative block h-[300vh] bg-[#0a0f1d]">
+    <div class="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+      <!-- BRANDING OVERLAY -->
+      <div class="absolute top-8 left-8 z-20 flex items-center gap-4 pointer-events-auto">
+        <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl glow-aqua flex items-center justify-center bg-slate-900/40 backdrop-blur-md border border-white/10">
+          <img src="assets/raya_logo.jpg" alt="Raya Logo" class="w-14 h-14 md:w-16 md:h-16 object-contain rounded-lg">
+        </div>
+        <div class="text-white drop-shadow-lg">
+          <div class="font-bold text-2xl md:text-3xl tracking-tight">Raya</div>
+          <div class="text-xs md:text-sm text-cyan-200 font-medium opacity-80">Type-I Civilization Architecture</div>
+        </div>
       </div>
-      <div>
-        <div class="font-semibold text-font-Arial text-4xl text-white">Raya</div>
-        <div class="text-xl text-slate-200 -mt-1">An Architecture for a Type-I Civilization</div>
+
+      <!-- PLAY BUTTON (TOP RIGHT) -->
+      <div class="absolute top-8 right-8 z-20 flex items-center gap-4">
+        <button id="play-toggle" class="px-4 py-2 bg-slate-900/40 hover:bg-cyan-500/40 border border-white/10 rounded-full text-cyan-100 text-sm font-bold flex items-center gap-2 backdrop-blur-md transition-all cursor-pointer group">
+          <span id="play-icon" class="w-2 h-2 bg-red-400 rounded-full animate-pulse transition-transform"></span>
+          <span id="play-text">PAUSE</span>
+        </button>
+      </div>
+
+      <canvas id="planetary-canvas" class="w-full h-full"></canvas>
+      
+      <div id="story-overlay" class="absolute inset-0 pointer-events-none flex items-center justify-center">
+        <div class="story-text opacity-0 transition-opacity duration-1000 text-6xl md:text-8xl lg:text-9xl px-4" data-start="0" data-end="15">
+          Unified Intelligence
+        </div>
+        <div class="story-text opacity-0 transition-opacity duration-1000 text-6xl md:text-8xl lg:text-9xl px-4" data-start="20" data-end="35">
+          <span class="text-scrolly-cyan mr-2">1.</span> Energy
+        </div>
+        <div class="story-text opacity-0 transition-opacity duration-1000 text-6xl md:text-8xl lg:text-9xl px-4" data-start="40" data-end="55">
+          <span class="text-scrolly-cyan mr-2">2.</span> Water
+        </div>
+        <div class="story-text opacity-0 transition-opacity duration-1000 text-6xl md:text-8xl lg:text-9xl px-4" data-start="60" data-end="75">
+          <span class="text-scrolly-cyan mr-2">3.</span> Farming
+        </div>
+        <div class="story-text opacity-0 transition-opacity duration-1000 text-6xl md:text-8xl lg:text-9xl px-4" data-start="80" data-end="95">
+          <span class="text-scrolly-cyan mr-2">4.</span> Humanity
+        </div>
       </div>
     </div>
-  </header>
+  </section>
 
   <!-- HERO -->
+  <div id="navbar-placeholder">
+    <!-- Shared Navbar Loaded Here -->
+  </div>
   <main class="max-w-6xl ml-auto mr-auto px-6">
-    <section class="gap-3 py-0">
-      <div class="max-w-6xl mx-auto pl-6 pr-0">
-        <nav class="flex justify-end items-right gap-6 py-3">
-          <a class="text-black-900 hover:text-yellow-800" href="public/vision_main.html">Vision</a>
-          <a class="text-black-900 hover:text-yellow-800" href="public/journey.html">Journey</a>
-          <a class="text-black-900 hover:text-yellow-800" href="public/raya_problem.html">Challenges</a>
-          <a class="text-black-900 hover:text-yellow-800" href="public/module.html">Module</a>
-          <a class="text-black-900 hover:text-yellow-800" href="public/portal.html">Portal</a>
-          <a class="px-4 py-2 rounded-md btn-rune text-sm text-blue-900 hover:text-yellow-800" href="#follow">
-            Join
-          </a>
-        </nav>
-      </div>
-    </section>
     <section class="gap-3 items-center py-12">
       <div class="space-y-6">
-        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Raya — Open Knowledge Intelligence for Planetary
-          Coordination</h1>
-        <p class="text-slate-800">Building transparent, community-governed intelligence to coordinate energy, resources,
-          and knowledge at a planetary scale.</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Raya — Open Knowledge Intelligence for Planetary Coordination</h1>
+        <p class="text-slate-800">Building transparent, community-governed intelligence to coordinate energy, resources, and knowledge at a planetary scale.</p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3 items-center py-4">
           <div class="planet-card">
             <div class="planet-title">How Raya Thinks</div>
@@ -210,56 +235,11 @@
     <!-- Load Raya Assistant -->
     <div id="raya-assistant-container"></div>
 
-    <script>
-      fetch("src/components/raya-assistant.html")
-        .then(res => res.text())
-        .then(html => {
-          // Insert HTML
-          document.getElementById("raya-assistant-container").innerHTML = html;
-
-          // Extract and run any <script> inside the loaded file
-          const container = document.getElementById("raya-assistant-container");
-          const scripts = container.querySelectorAll("script");
-          scripts.forEach(oldScript => {
-            const newScript = document.createElement("script");
-            if (oldScript.src) {
-              newScript.src = oldScript.src; // external script
-            } else {
-              newScript.textContent = oldScript.textContent; // inline script
-            }
-            document.body.appendChild(newScript);
-            oldScript.remove();
-          });
-        })
-        .catch(err => console.error("Failed to load Raya Assistant:", err));
-    </script>
+    <script src="public/planetary-system.js"></script>
+    <script src="src/scripts/layout-loader.js"></script>
   </main>
 
-  <!-- FOOTER -->
-    <footer class="mt-12 py-10 text-slate-400 bg-slate-300 h-[18rem]">
-      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div>
-          <div class="font-semibold text-white-200">Raya</div>
-          <div class="text-sm mt-2">From Darkness to Light — tamso mā jyotirgamaya</div>
-        </div>
-        <div>
-          <div class="font-semibold">Explore</div>
-          <div class="mt-2 text-sm grid gap-2">
-            <a href="public/vision_main.html" class="text-slate-400">Vision</a>
-            <a href="public/journey.html" class="text-slate-400">Journey</a>
-            <a href="public/portal.html" class="text-slate-400">Portal</a>
-          </div>
-        </div>
-        <div>
-          <div class="font-semibold">Contact</div>
-          <div class="mt-2 text-sm">hello@raya.org</div>
-        </div>
-      </div>
-      <div class="max-w-6xl mx-auto mt-8 text-center text-xs text-slate-600">© 2025 Raya — All Rights Reserved
-      </div>
-      <p class="mx-12 text-sm text-slate-400 mt-12 ">
-    Raya is exploratory, open, and long-horizon — not a product, not a promise, but a shared journey.
-  </p>
-    </footer>
+    <!-- FOOTER -->
+    <div id="footer-placeholder"></div>
   
 </body>
