@@ -5,3 +5,49 @@
 .header1 {
   background-color: rgb(3, 3, 46);
 }
+
+.container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2px; /* space between rectangles */
+}
+
+.single_rectangle {
+      width: 600px;
+      height: 50px;
+      background: linear-gradient(5deg, #9188a8, #7c55e7);
+      margin: 0;
+      color: rgb(218, 214, 227);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(13, 2, 91, 0.6);
+}
+
+.rectangle {
+      width: 150px;
+      height: 40px;
+      background: linear-gradient(10deg, #bfcdd7, #7661ae);
+      margin: 0;
+      color: rgb(218, 214, 227);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+}
+
+.flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arrow {
+  font-size: 2px;
+  line-height: 2;   /* removes extra top/bottom space */
+  margin: 0;        /* remove spacing */
+}
+
