@@ -1,42 +1,53 @@
 .header {
   background-color: rgb(1, 1, 28);
 }
- 
+
 .header1 {
   background-color: rgb(3, 3, 46);
 }
 
 .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 2px; /* space between rectangles */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px; /* space between rectangles */
 }
 
 .single_rectangle {
-      width: 600px;
-      height: 50px;
-      background: linear-gradient(5deg, #9188a8, #7c55e7);
-      margin: 0;
-      color: rgb(218, 214, 227);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(13, 2, 91, 0.6);
+  width: 600px;
+  height: 50px;
+  background: linear-gradient(180deg, #8b7ab6, #7e69b2);
+  margin: 0;
+  color: rgb(218, 214, 227);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.raya_layer {
+  background: linear-gradient(180deg, #a491e0, #8967e8);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 25px rgba(137, 103, 232, 0.4);
+  color: #ffffff;
+  z-index: 10;
 }
 
 .rectangle {
-      width: 150px;
-      height: 40px;
-      background: linear-gradient(10deg, #bfcdd7, #7661ae);
-      margin: 0;
-      color: rgb(218, 214, 227);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
+  width: 142px;
+  height: 28px;
+  background: transparent;
+  border: 1px solid rgba(191, 205, 215, 0.4);
+  margin: 0;
+  color: rgba(218, 214, 227, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.5px;
 }
 
 .flow {
@@ -47,7 +58,6 @@
 
 .arrow {
   font-size: 2px;
-  line-height: 2;   /* removes extra top/bottom space */
-  margin: 0;        /* remove spacing */
+  line-height: 2; /* removes extra top/bottom space */
+  margin: 0; /* remove spacing */
 }
-
