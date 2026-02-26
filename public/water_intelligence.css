@@ -27,14 +27,6 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-.raya_layer {
-  background: linear-gradient(180deg, #a491e0, #8967e8);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 25px rgba(137, 103, 232, 0.4);
-  color: #ffffff;
-  z-index: 10;
-}
-
 .rectangle {
   width: 142px;
   height: 28px;
