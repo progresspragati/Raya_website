@@ -11,54 +11,43 @@
 </head>
 
 <body>
-
-  <!-- ============================
-       TOP NAVIGATION
-       ============================ -->
-  <nav class="top-nav">
-    <div class="nav-container">
-      <div class="nav-links">
-        <a href="#architecture">Architecture</a>
-        <a href="#governance">Governance</a>
-        <a href="#deployment">Deployment</a>
-        <a href="#impact">Impact</a>
-        <a href="#portal">Portal</a>
-      </div>
-    </div>
-  </nav>
+  <!-- System Depth Overlay -->
+  <div class="depth-overlay"></div>
 
   <!-- ============================
        1. HERO SECTION
        ============================ -->
   <section class="hero-section">
     <div class="section-container hero-content">
+      <span class="tech-label">Operational Module / RJ-204</span>
       <h1 class="hero-headline">Engineered Energy Optimization for Operational Infrastructure</h1>
       <p class="hero-sub">
         RAYA Energy Intelligence is a deterministic optimization layer designed to monitor, model, and improve energy
         systems across industrial and distributed environments.
       </p>
       <p class="hero-tagline">Built for control. Built for auditability. Built within boundaries.</p>
-      <a href="https://energy.raya.systems" class="cta-btn">Access Energy Module</a>
-      <span class="cta-trust">Secure portal • Authorized deployment environments only</span>
+      
+      <div style="margin-top: 48px;">
+        <a href="https://energy.raya.systems" class="cta-btn">Access Energy Module</a>
+        <span class="cta-trust">Secure portal • Authorized deployment environments only</span>
+      </div>
     </div>
   </section>
 
   <!-- ============================
        2. THE PROBLEM SECTION
        ============================ -->
-  <section id="problem" class="light-section">
+  <section class="light-section">
     <div class="section-container">
-      <h2 class="section-headline section-headline-center">
-        <span class="section-marker section-marker-center">01 — SYSTEM PROBLEM</span>
-        Energy Systems Fail at Timing, Not Supply
-      </h2>
+      <span class="tech-label">System Audit / Structural Inefficiency</span>
+      <h2 class="section-headline">Energy Systems Fail at Timing, Not Supply</h2>
       <div class="split-layout">
         <div>
           <p class="section-subtext muted-dark">
             Modern energy environments face structural inefficiencies that are not about generation capacity — they are
             about coordination, timing, and response architecture.
           </p>
-          <p class="section-subtext muted-dark" style="margin-top: 16px;">
+          <p class="section-subtext muted-dark" style="margin-top: 24px;">
             Energy is not scarce.<br>
             It is misaligned in distribution and response.
           </p>
@@ -77,14 +66,12 @@
   <!-- ============================
        3. WHAT RAYA IS
        ============================ -->
-  <section id="optimization" class="light-section-alt">
+  <section class="light-section-alt">
     <div class="section-container">
       <div class="split-layout">
         <div>
-          <h2 class="section-headline">
-            <span class="section-marker">02 — OPTIMIZATION LAYER</span>
-            A Deterministic Optimization Layer
-          </h2>
+          <span class="tech-label">Deterministic Optimization</span>
+          <h2 class="section-headline">A Deterministic Optimization Layer</h2>
           <p class="section-subtext muted-dark">
             RAYA does not generate energy.<br>
             It does not control national grids.<br>
@@ -122,12 +109,10 @@
   <!-- ============================
        4. SYSTEM ARCHITECTURE
        ============================ -->
-  <section id="architecture" class="light-section">
+  <section class="light-section">
     <div class="section-container">
-      <h2 class="section-headline section-headline-center">
-        <span class="section-marker section-marker-center">03 — SYSTEM ARCHITECTURE</span>
-        System Architecture
-      </h2>
+      <span class="tech-label">Architecture Stack</span>
+      <h2 class="section-headline">System Architecture</h2>
 
       <div class="arch-layer">
         <h3>Telemetry Normalization</h3>
@@ -140,7 +125,7 @@
           <li>Battery storage units</li>
           <li>Microgrid controllers</li>
         </ul>
-        <p style="margin-top: 14px;">All data is timestamped, source-validated, and integrity-checked.</p>
+        <span class="cta-trust" style="color: var(--text-dark-muted); opacity: 1;">Protocol: Source-validated, timestamped integrity checks.</span>
       </div>
 
       <div class="arch-layer">
@@ -152,7 +137,6 @@
           <li>Variance analysis</li>
           <li>Statistical demand windows</li>
         </ul>
-        <p style="margin-top: 14px;">Detects abnormal spikes and baseline drift.</p>
       </div>
 
       <div class="arch-layer">
@@ -164,55 +148,44 @@
           <li>Storage timing adjustments</li>
           <li>Anomaly flagging</li>
         </ul>
-        <p style="margin-top: 14px;">Automation triggers only when authorized. Human supervisory control remains intact.
-        </p>
-      </div>
-
-      <div class="arch-layer">
-        <h3>Renewable Synchronization</h3>
-        <p>
-          Aligns generation timing with demand windows.<br>
-          Detects underperformance.<br>
-          Adjusts storage cycles within policy limits.
-        </p>
-        <p style="margin-top: 14px; font-weight: 500;">Adaptive — not autonomous.</p>
+        <span class="cta-trust" style="color: var(--text-dark-muted); opacity: 1;">Logic: Non-autonomous. Human-supervised. Policy-bound.</span>
       </div>
     </div>
   </section>
 
   <!-- ============================
-       5. GOVERNANCE & CONTROL
+       5. GOVERNANCE & CONTROL (Asymmetric Grid)
        ============================ -->
-  <section id="governance" class="dark-section">
+  <section class="dark-section dark-section-alt">
     <div class="section-container">
-      <h2 class="section-headline section-headline-center" style="color: var(--text-white);">
-        <span class="section-marker section-marker-center">04 — CONTROLLED INTELLIGENCE</span>
-        Controlled Intelligence Framework
-      </h2>
+      <span class="tech-label">Governance Protocol / v1.2</span>
+      <h2 class="section-headline">Controlled Intelligence Framework</h2>
+      
       <div class="governance-grid">
         <div class="governance-card">
-          <div class="gov-number">01</div>
+          <span class="gov-number">01</span>
           <div class="gov-title">Deterministic Output</div>
-          <div class="gov-desc">Same input → same decision. Always.</div>
+          <div class="gov-desc">The logic produces identical decisions given identical inputs. No stochastic variance.</div>
         </div>
         <div class="governance-card">
-          <div class="gov-number">02</div>
+          <span class="gov-number">02</span>
           <div class="gov-title">Immutable Logging</div>
-          <div class="gov-desc">Every action is permanently recorded.</div>
+          <div class="gov-desc">Every system adjustment is cryptographically recorded. Auditability is absolute.</div>
         </div>
         <div class="governance-card">
-          <div class="gov-number">03</div>
-          <div class="gov-title">No Autonomous Mutation</div>
-          <div class="gov-desc">Logic cannot rewrite itself.</div>
+          <span class="gov-number">03</span>
+          <div class="gov-title">No Autonomous Policy Mutation</div>
+          <div class="gov-desc">Optimization logic remains static within defined thresholds. Logic cannot rewrite its own constraints.</div>
         </div>
         <div class="governance-card">
-          <div class="gov-number">04</div>
-          <div class="gov-title">Human Override</div>
-          <div class="gov-desc">Final authority remains external.</div>
+          <span class="gov-number">04</span>
+          <div class="gov-title">Human Override Architecture</div>
+          <div class="gov-desc">The system operates as a tool for operators, not a replacement. Final authority remains external.</div>
         </div>
       </div>
-      <p style="text-align: center; color: var(--text-muted); margin-top: 48px; font-size: 1.02rem; max-width: 560px; margin-left: auto; margin-right: auto;">
-        Energy infrastructure requires discipline.<br>
+      
+      <p style="margin-top: 60px; font-weight: 300; color: var(--text-muted); opacity: 0.8; max-width: 500px;">
+        Energy infrastructure requires engineering discipline.<br>
         RAYA operates within defined boundaries.
       </p>
     </div>
@@ -221,28 +194,25 @@
   <!-- ============================
        6. DEPLOYMENT MODEL
        ============================ -->
-  <section id="deployment" class="light-section">
+  <section class="light-section">
     <div class="section-container">
-      <h2 class="section-headline section-headline-center">
-        <span class="section-marker section-marker-center">05 — DEPLOYMENT MODEL</span>
-        Modular Deployment Architecture
-      </h2>
       <div class="split-layout">
         <div>
+          <span class="tech-label">Deployment Architecture</span>
+          <h2 class="section-headline">Modular Deployment</h2>
           <p class="section-subtext muted-dark">Deployable as:</p>
-          <ul class="styled-list dark-list" style="margin-top: 12px;">
+          <ul class="styled-list dark-list" style="margin-top: 16px;">
             <li>Cloud optimization layer</li>
             <li>Edge compute node</li>
             <li>Hybrid control stack</li>
           </ul>
-          <p class="section-subtext muted-dark" style="margin-top: 24px;">
-            It integrates into infrastructure.<br>
-            It does not centralize authority.
+          <p class="section-subtext muted-dark" style="margin-top: 32px; font-weight: 500;">
+            It integrates into infrastructure. It does not centralize authority.
           </p>
         </div>
         <div>
-          <p class="section-subtext muted-dark" style="margin-bottom: 16px;">Applicable environments:</p>
-          <div class="env-grid">
+          <span class="tech-label">Authorized Environments</span>
+          <div class="env-grid" style="margin-top: 24px;">
             <div class="env-item">Industrial Facilities</div>
             <div class="env-item">Data Centers</div>
             <div class="env-item">Institutional Campuses</div>
@@ -257,35 +227,31 @@
   <!-- ============================
        7. PERFORMANCE RANGE
        ============================ -->
-  <section id="impact" class="light-section-alt">
+  <section class="light-section-alt" style="padding: 120px 0;">
     <div class="section-container">
-      <h2 class="section-headline section-headline-center">
-        <span class="section-marker section-marker-center">06 — OPERATIONAL IMPACT</span>
-        Measured Operational Impact
-      </h2>
-      <p class="section-subtext muted-dark" style="text-align: center; margin: 0 auto 56px;">
-        In structured deployments:
-      </p>
+      <span class="tech-label">Operational Impact Matrix</span>
+      <h2 class="section-headline">Measured Performance Range</h2>
+      
       <div class="stats-row">
         <div class="stat-block">
           <div class="stat-number">8–18%</div>
-          <div class="stat-label">Energy Efficiency</div>
+          <div class="stat-label">Efficiency Variance Reduction</div>
         </div>
         <div class="stat-block">
-          <div class="stat-number">Reduced</div>
-          <div class="stat-label">Peak Penalties</div>
+          <div class="stat-number">Minimized</div>
+          <div class="stat-label">Peak Penalty Exposure</div>
         </div>
         <div class="stat-block">
-          <div class="stat-number">Faster</div>
-          <div class="stat-label">Anomaly Detection</div>
+          <div class="stat-number">Real-time</div>
+          <div class="stat-label">Anomaly Detection Response</div>
         </div>
         <div class="stat-block">
-          <div class="stat-number">Improved</div>
+          <div class="stat-number">Extended</div>
           <div class="stat-label">Equipment Lifecycle</div>
         </div>
       </div>
-      <p style="text-align: center; color: var(--text-dark-muted); margin-top: 56px; font-size: 0.9rem;">
-        Performance depends on integration depth. No guaranteed projections.
+      <p style="color: var(--text-dark-muted); margin-top: 60px; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace;">
+        * Performance is system-dependent. Integration depth determines ultimate efficiency ceiling.
       </p>
     </div>
   </section>
@@ -293,18 +259,20 @@
   <!-- ============================
        8. FINAL PORTAL SECTION
        ============================ -->
-  <section id="portal" class="dark-section" style="padding: 120px 0;">
+  <section class="dark-section" style="padding: 160px 0; border-top: 1px solid var(--border-light);">
     <div class="section-container" style="text-align: center;">
-      <h2 class="section-headline section-headline-center" style="color: var(--text-white); margin-bottom: 20px;">
-        <span class="section-marker section-marker-center">07 — ACCESS PORTAL</span>
+      <span class="tech-label" style="text-align: center;">Environment Access</span>
+      <h2 class="section-headline section-headline-center" style="max-width: 700px; margin-left: auto; margin-right: auto;">
         Access the Energy Intelligence Environment
       </h2>
       <p class="closing-text">
-        RAYA Energy Intelligence is a live operational module.<br>
-        It is not a simulation.
+        RAYA Energy Intelligence is a live operational module. It is not a simulation.
       </p>
-      <a href="https://energy.raya.systems" class="cta-btn">Enter Energy Module Portal</a>
-      <span class="cta-trust" style="text-align: center;">Authentication required • Role-based access enforced</span>
+      
+      <div style="margin-top: 60px;">
+        <a href="https://energy.raya.systems" class="cta-btn">Enter Energy Module Portal</a>
+        <span class="cta-trust">Role-based access enforced • Authentication required</span>
+      </div>
     </div>
   </section>
 
