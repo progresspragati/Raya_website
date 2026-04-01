@@ -298,3 +298,24 @@
         display: none;
       }
     }
+
+    /* Game Component Styles */
+    #raya-game-container canvas {
+      image-rendering: -moz-crisp-edges;
+      image-rendering: -webkit-crisp-edges;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    #start-game {
+      text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+    }
+
+    #start-game:hover {
+      box-shadow: 0 0 30px rgba(6, 182, 212, 0.4);
+    }
+
+    .game-node {
+      filter: drop-shadow(0 0 8px currentColor);
+    }

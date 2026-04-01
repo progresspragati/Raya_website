@@ -178,6 +178,49 @@
 
         </div>
 
+        <!-- Grid Experiment (Game) -->
+        <section class="mt-10 pt-4 border-t border-slate-200">
+           <div class="mb-8 max-w-4xl">
+            <h2 class="text-2xl font-semibold" style="color:var(--deep)">
+              Grid Synchronization Experiment
+            </h2>
+            <p class="text-slate-800 py-2">
+              Experience the complexity of planetary coordination. Synchronize fluctuating energy nodes to maintain global stability.
+            </p>
+            
+            <div id="raya-game-container" class="mt-6 p-6 rounded-2xl bg-[#0a0f1d] border border-cyan-500/30 relative overflow-hidden ring-1 ring-cyan-500/10 shadow-[0_0_30px_rgba(6,182,212,0.1)]">
+                <div id="game-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-[#0a0f1d]/90 z-10 transition-opacity duration-500">
+                    <div class="text-cyan-400 font-mono text-xs mb-4 tracking-[0.2em]">RAYA INTERACTIVE PROTOCOL</div>
+                    <button id="start-game" class="px-8 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-sm transition-all transform hover:scale-105 active:scale-95 tracking-widest text-sm">
+                        STABILIZE SYSTEM
+                    </button>
+                </div>
+                
+                <div class="flex justify-between items-center mb-6 px-2">
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-slate-500 uppercase tracking-widest mb-1">Grid Status</span>
+                        <span id="game-status" class="text-cyan-400 font-mono text-sm font-bold">STABLE // STANDBY</span>
+                    </div>
+                    <div class="flex flex-col items-end">
+                        <span class="text-[10px] text-slate-500 uppercase tracking-widest mb-1">Global Stability</span>
+                        <span class="text-cyan-400 font-mono text-sm font-bold"><span id="game-score">100</span>%</span>
+                    </div>
+                </div>
+
+                <div class="relative w-full aspect-video max-h-[400px] border border-white/5 rounded-lg bg-black/20 overflow-hidden">
+                    <canvas id="game-canvas" class="w-full h-full cursor-crosshair"></canvas>
+                </div>
+
+                <div class="mt-6 flex justify-between items-center px-2">
+                    <div class="text-[9px] text-slate-500 uppercase tracking-widest max-w-[200px] leading-relaxed">
+                        Interaction: Click unstable nodes (red) to synchronize them with the planetary grid.
+                    </div>
+                    <div id="game-timer" class="text-cyan-500/40 font-mono text-xs tracking-tighter">00:00:00</div>
+                </div>
+            </div>
+          </div>
+        </section>
+
         <!-- An evolving architecture -->
         <section class="mt-10 pt-4 border-t border-slate-200">
           <div class="mb-8 max-w-4xl">
@@ -237,7 +280,8 @@
     <!-- Load Raya Assistant -->
     <div id="raya-assistant-container"></div>
 
-    <script src="public/planetary-system.js"></script>
+    <script src="src/scripts/planetary-system.js"></script>
+    <script src="src/scripts/raya-game.js"></script>
     <script src="src/scripts/layout-loader.js"></script>
   </main>
 
