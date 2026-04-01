@@ -319,3 +319,18 @@
     .game-node {
       filter: drop-shadow(0 0 8px currentColor);
     }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-scroll {
+      animation: marquee 30s linear infinite;
+    }
+
+    .hero-figure {
+      background: #020617;
+      border-radius: 18px;
+      border: 1px solid rgba(0, 230, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
