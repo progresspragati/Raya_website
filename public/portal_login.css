@@ -133,6 +133,7 @@ body {
   align-items: center;
   justify-content: center;
   background: radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.03) 0%, transparent 70%);
+  position: relative;
 }
 
 .login-card {
@@ -144,6 +145,28 @@ body {
   max-width: 460px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.top-system-context {
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.top-system-context .separator {
+  opacity: 0.3;
 }
 
 .auth-header {
@@ -282,12 +305,20 @@ body {
   display: none;
 }
 
-/* Mobile Responsive */
 @media (max-width: 1024px) {
   .system-identity {
     display: none;
   }
   .login-form-area {
     width: 100%;
+    min-height: 100dvh;
+    padding: 1.5rem;
+  }
+  .login-card {
+    padding: 2rem 1.5rem;
+    margin-top: 0;
+  }
+  .top-system-context {
+    top: 1.5rem;
   }
 }
