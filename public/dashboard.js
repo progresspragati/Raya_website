@@ -32,6 +32,51 @@ document.addEventListener('DOMContentLoaded', () => {
         let healthVal = (statusMetrics.health.base + parseFloat(hVar)).toFixed(1);
         healthVal = Math.min(100, Math.max(95, healthVal));
         statusMetrics.health.el.innerHTML = `${healthVal}${statusMetrics.health.suffix}`;
+
+        updateRegionGrid();
+        updateSystemLog();
+    }
+
+    const logMessages = [
+        "Ingesting telemetry from Node-RJ204...",
+        "Load balancing active for Singapore Node.",
+        "Model re-calibration: Success.",
+        "Anomaly detection: No threats found.",
+        "Grid synchronization: Optimal.",
+        "Renewable mix increasing (+1.2%).",
+        "Protocol update: Secure (v1.2.4).",
+        "Backup systems: Standby."
+    ];
+
+    function updateSystemLog() {
+        const logContainer = document.getElementById('system-log');
+        const now = new Date();
+        const time = now.toISOString().split('T')[1].split('.')[0];
+        const msg = logMessages[Math.floor(Math.random() * logMessages.length)];
+        
+        const newLog = document.createElement('div');
+        newLog.className = 'log-item';
+        newLog.textContent = `[${time}] ${msg}`;
+        
+        logContainer.prepend(newLog);
+        if (logContainer.children.length > 5) {
+            logContainer.lastElementChild.remove();
+        }
+    }
+
+    function updateRegionGrid() {
+        const cityCards = document.querySelectorAll('.city-card');
+        cityCards.forEach(card => {
+            const stats = card.querySelectorAll('.stat-value');
+            // Demand
+            const currentDemand = parseInt(stats[0].textContent);
+            const dVar = Math.floor(Math.random() * 10 - 5);
+            stats[0].textContent = `${currentDemand + dVar} MW`;
+            // Load
+            const currentLoad = parseInt(stats[1].textContent);
+            const lVar = Math.floor(Math.random() * 4 - 2);
+            stats[1].textContent = `${Math.min(100, Math.max(10, currentLoad + lVar))}%`;
+        });
     }
 
     setInterval(updateStatusStrip, 20000);

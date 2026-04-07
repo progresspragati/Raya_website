@@ -192,16 +192,37 @@ body.industrial-theme {
 }
 
 .city-card {
-  background: rgba(255, 255, 255, 0.01);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
   border: 1px solid var(--border-light);
-  border-radius: 4px;
-  padding: 16px;
-  transition: all 0.2s ease;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.city-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
 }
 
 .city-card:hover {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(6, 182, 212, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.city-card:hover::after {
+  transform: translateX(100%);
 }
 
 .city-header {
@@ -458,6 +479,30 @@ input:checked + .slider:before {
   position: absolute;
   left: -14px;
   color: var(--accent-cyan);
+}
+
+/* --- SYSTEM LOG --- */
+.log-entries {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 80px;
+  overflow: hidden;
+}
+
+.log-item {
+  border-left: 1px solid var(--accent-cyan);
+  padding-left: 8px;
+  opacity: 0.8;
+  animation: logSlide 0.3s ease-out;
+}
+
+@keyframes logSlide {
+  from { transform: translateX(-10px); opacity: 0; }
+  to { transform: translateX(0); opacity: 0.8; }
 }
 
 .system-note {
