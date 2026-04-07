@@ -17,10 +17,15 @@ class PortalAnimation {
     }
 
     init() {
-        this.resize();
         window.addEventListener('resize', () => this.resize());
         window.addEventListener('mousemove', (e) => this.handleMouseMove(e));
         
+        // Wait for layout to settle
+        requestAnimationFrame(() => {
+            this.resize();
+            this.animate();
+        });
+
         // Initial setup for nodes
         for(let i=0; i<40; i++) {
             this.particles.push({
@@ -36,9 +41,22 @@ class PortalAnimation {
     }
 
     resize() {
-        const rect = this.canvas.getBoundingClientRect();
-        this.canvas.width = rect.width * window.devicePixelRatio;
-        this.canvas.height = rect.height * window.devicePixelRatio;
+        if (!this.canvas || !this.canvas.parentElement) return;
+        
+        const parent = this.canvas.parentElement;
+        const dpr = window.devicePixelRatio || 1;
+        const rect = parent.getBoundingClientRect();
+        
+        // CSS dimensions
+        this.width = rect.width;
+        this.height = rect.height;
+        
+        // Canvas resolution
+        this.canvas.width = this.width * dpr;
+        this.canvas.height = this.height * dpr;
+        
+        // Normalize coordinate system
+        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
     handleMouseMove(e) {
@@ -54,12 +72,12 @@ class PortalAnimation {
     }
 
     draw() {
-        const { width, height } = this.canvas;
+        const { width, height } = this;
         this.ctx.clearRect(0, 0, width, height);
         
         const centerX = width / 2;
         const centerY = height / 2;
-        const baseRadius = Math.min(width, height) * 0.2;
+        const baseRadius = Math.min(width, height) * 0.18;
 
         // Apply mouse-based parallax
         const tiltX = this.mouse.x * 20;
