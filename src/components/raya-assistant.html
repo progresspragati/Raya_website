@@ -76,7 +76,7 @@
     bottom: 105px;
     right: 24px;
     width: 340px;
-    max-height: 500px;
+    max-height: 600px; /* Increased from 500px */
     background: var(--panel-bg);
     border: 1px solid rgba(0, 230, 255, 0.15);
     border-radius: 20px;
@@ -189,6 +189,46 @@
   .send-btn:hover { transform: scale(1.05); background: #33f0ff; }
   .close-btn { background: transparent; border: none; color: rgba(255, 255, 255, 0.5); cursor: pointer; font-size: 18px; transition: color 0.2s; }
   .close-btn:hover { color: white; }
+
+  /* Quick Queries */
+  .quick-queries {
+    padding: 0 20px 16px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; 
+    min-height: 85px; /* Added protection for 2 lines */
+    max-height: 120px;
+    flex-shrink: 0; /* Prevents squeezing */
+    overflow-y: auto;
+    animation: fadeIn 0.5s ease-out both;
+  }
+  .quick-queries::-webkit-scrollbar { width: 4px; }
+  .quick-queries::-webkit-scrollbar-thumb { background: rgba(0, 230, 255, 0.2); border-radius: 4px; }
+  
+  .query-pill {
+    padding: 8px 16px;
+    background: rgba(0, 230, 255, 0.05);
+    border: 1px solid rgba(0, 230, 255, 0.2);
+    border-radius: 30px;
+    color: var(--aqua);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .query-pill:hover {
+    background: rgba(0, 230, 255, 0.1);
+    border-color: rgba(0, 230, 255, 0.4);
+    transform: translateY(-2px);
+  }
+  .query-pill:active { transform: translateY(0); }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 
 <!-- Floating Orb -->
@@ -209,6 +249,9 @@
   <div id="assistantMessages" class="assistant-messages">
     <!-- Messages injected here -->
   </div>
+  <div id="quickQueries" class="quick-queries">
+    <!-- Quick query pills injected here -->
+  </div>
   <div class="assistant-input-container">
     <div class="input-wrapper">
       <input id="assistantInput" type="text" placeholder="Type message..." autocomplete="off" />
@@ -225,8 +268,16 @@
   const input = document.getElementById('assistantInput');
   const sendBtn = document.getElementById('assistantSend');
   const messages = document.getElementById('assistantMessages');
+  const queriesContainer = document.getElementById('quickQueries');
 
   let history = JSON.parse(localStorage.getItem('raya-chat')||'[]');
+
+  const suggestedQuestions = [
+    "What is Raya?",
+    "What is your mission?",
+    "How can I join?",
+    "Planetary system info"
+  ];
 
   function getTime() {
     const d = new Date();
@@ -251,10 +302,27 @@
     if (history.length === 0) {
       setTimeout(() => {
         addMessage('raya', "Operational status: Optimal. I am Raya Intelligence. How can I assist you with the first Open Knowledge network?");
+        renderSuggestions();
       }, 500);
     } else {
       history.forEach(m => renderMessage(m));
+      queriesContainer.style.display = 'none'; // Hide if already talking
     }
+  }
+
+  function renderSuggestions() {
+    queriesContainer.innerHTML = '';
+    queriesContainer.style.display = 'flex';
+    suggestedQuestions.forEach(q => {
+      const pill = document.createElement('div');
+      pill.className = 'query-pill';
+      pill.textContent = q;
+      pill.onclick = () => {
+        handleSend(q);
+        queriesContainer.style.display = 'none';
+      };
+      queriesContainer.appendChild(pill);
+    });
   }
 
   function addMessage(role, text) {
@@ -287,41 +355,103 @@
   }
 
   function getRayaResponse(userText) {
-    const text = userText.toLowerCase();
-    const responses = {
-      greeting: [
-        "Welcome to the Raya Intelligence interface. How can I help you navigate the planetary system?",
-        "Greetings. I am monitoring the synchronize levels. What is your query?",
-      ],
-      mission: [
-        "Our objective is to build the first Open Knowledge Intelligence network. A decentralized, open-source world brain.",
-        "Raya exists to bridge the gap between information and collective intelligence."
-      ],
-      default: [
-        "Initializing analysis... This query will be synchronized with our next intelligence upgrade.",
-        "Interesting observation. I have logged this for the core development team.",
-        "Operational parameters are evolving. Stay tuned to the devlogs for updates on this module.",
-        "Your message is valued. I am still learning to parse complex intent, but your input improves me."
-      ]
-    };
+    const text = userText.toLowerCase().trim();
+    
+    const KNOWLEDGE_BASE = [
+      {
+        id: 'mission',
+        triggers: ['mission', 'goal', 'objective', 'vision', 'what are you', 'who are you', 'purpose'],
+        responses: [
+          "Our mission is to build the first Open Knowledge Intelligence — a community-driven, decentralized 'world brain' for planetary coordination.",
+          "Raya is a transition from isolated information systems to unified planetary intelligence. We coordinate energy, resources, and knowledge at scale.",
+          "We are designing an open-source architecture for a Type-I Civilization. Our goal is transparent, auditable intelligence for everyone."
+        ]
+      },
+      {
+        id: 'systems',
+        triggers: ['energy', 'water', 'farming', 'sustainability', 'grid', 'planet', 'resources'],
+        responses: [
+          "Raya monitors and simulates core planetary systems like Energy transitions, Water scarcity, and Climate-aware Farming.",
+          "Our Energy module focuses on grid synchronization and renewable transitions. You can even try the 'Grid Synchronization Experiment' on our homepage!",
+          "We approach Earth as a single, shared system. Our research covers everything from atmospheric CO2 to global resource distribution."
+        ]
+      },
+      {
+        id: 'principles',
+        triggers: ['ethics', 'philosophy', 'integrity', 'limits', 'integrity', 'values', 'rules', 'principles'],
+        responses: [
+          "RAYA is guided by foundational principles: Planetary stability over short-term optimization, and scientific integrity over ideology.",
+          "We prioritize planetary limits over unchecked growth. Our models are auditable and community-governed to ensure responsibility.",
+          "In our architecture, human sustainability is the primary metric. Scientific integrity and humanity's shared future are non-negotiable."
+        ]
+      },
+      {
+        id: 'join',
+        triggers: ['join', 'help', 'contribute', 'developer', 'research', 'involved', 'participate'],
+        responses: [
+          "Raya is a community-first initiative. You can follow our journey through the devlogs or contribute to our open-source research modules.",
+          "We are seeking researchers, builders, and citizens who believe in a shared planetary future. Check our updates page for the latest onboarding info.",
+          "The first Open Knowledge network is built by many. Stay tuned for our upcoming developer platform and research grants."
+        ]
+      },
+      {
+        id: 'greeting',
+        triggers: ['hello', 'hi', 'greetings', 'hey', 'anybody'],
+        responses: [
+          "Neural link active. Welcome to the Raya Intelligence interface. How may I coordinate with you today?",
+          "Greetings, Researcher. I am monitoring the planetary synchronization status. What is your query?",
+          "Welcome back to the Open Knowledge hub. I am ready to parse your request."
+        ]
+      }
+    ];
 
-    if (text.includes('hello') || text.includes('hi')) return responses.greeting[Math.floor(Math.random()*responses.greeting.length)];
-    if (text.includes('mission') || text.includes('what are you') || text.includes('why')) return responses.mission[Math.floor(Math.random()*responses.mission.length)];
-    return responses.default[Math.floor(Math.random()*responses.default.length)];
+    // Simple Intent Scoring
+    let bestIntent = null;
+    let maxMatches = 0;
+
+    KNOWLEDGE_BASE.forEach(intent => {
+      let matches = 0;
+      intent.triggers.forEach(trigger => {
+        if (text.includes(trigger)) matches++;
+      });
+      
+      if (matches > maxMatches) {
+        maxMatches = matches;
+        bestIntent = intent;
+      }
+    });
+
+    if (bestIntent && maxMatches > 0) {
+      const pool = bestIntent.responses;
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+
+    // Dynamic Thematic Fallbacks
+    const fallbacks = [
+      "Analyzing query parameters... This specific domain is currently being mapped by our research team.",
+      "Interesting observation. I have logged this for the core development logs. This helps improve the planetary intelligence model.",
+      "Operational parameters are evolving. While I don't have a direct data point for that yet, it aligns with our goal of planetary clarity.",
+      "Raya is still in seed phase. Your input contributes to our next intelligence upgrade. Stay tuned to the journey."
+    ];
+
+    return fallbacks[Math.floor(Math.random() * fallbacks.length)];
   }
 
-  function handleSend() {
-    const text = input.value.trim();
+  function handleSend(overrideText) {
+    const text = (typeof overrideText === 'string' ? overrideText : input.value).trim();
     if(!text) return;
 
     addMessage('user', text);
     input.value = '';
+    queriesContainer.style.display = 'none';
 
     setTimeout(() => {
       showTyping();
       setTimeout(() => {
         hideTyping();
         addMessage('raya', getRayaResponse(text));
+        // Re-show suggestions after Raya responds
+        setTimeout(renderSuggestions, 400); 
       }, 1500 + Math.random() * 1000);
     }, 400);
   }
