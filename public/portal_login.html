@@ -121,6 +121,9 @@
       
       // Simulate authentication process
       setTimeout(() => {
+        // Set authentication flag
+        localStorage.setItem('raya_auth', 'true');
+        
         // Redirecting to dashboard.html as requested
         window.location.href = 'dashboard.html';
       }, 2000);

@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- 0. SESSION CHECK ---
+    if (localStorage.getItem('raya_auth') !== 'true') {
+        window.location.href = 'portal_login.html';
+        return;
+    }
+
     // --- 1. SYSTEM CLOCK ---
     const timeDisplay = document.getElementById('live-time');
     function updateClock() {
@@ -195,8 +201,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 Thermal variance detected.`;
 
             predOutput.classList.remove('dormant');
-            submitBtn.textContent = 'Run Simulation';
             submitBtn.disabled = false;
         }, 800);
     });
+
+    // --- 5. LOGOUT ---
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('raya_auth');
+            window.location.href = 'portal_login.html';
+        });
+    }
 });
