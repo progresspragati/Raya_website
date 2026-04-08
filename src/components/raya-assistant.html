@@ -268,16 +268,37 @@
   const input = document.getElementById('assistantInput');
   const sendBtn = document.getElementById('assistantSend');
   const messages = document.getElementById('assistantMessages');
-  const queriesContainer = document.getElementById('quickQueries');
+  const queriesContainer = document.getElementById('quickQueries');  let history = JSON.parse(localStorage.getItem('raya-chat')||'[]');
+  let knowledgeBase = null;
 
-  let history = JSON.parse(localStorage.getItem('raya-chat')||'[]');
-
-  const suggestedQuestions = [
-    "What is Raya?",
-    "What is your mission?",
-    "How can I join?",
-    "Planetary system info"
-  ];
+  async function loadKnowledge() {
+    try {
+      const pathParts = window.location.pathname.split("/");
+      const cleanParts = pathParts.filter((p) => p.length > 0);
+      const publicIndex = cleanParts.indexOf("public");
+      let prefix = "";
+      if (publicIndex !== -1) {
+        const depth = cleanParts.length - 1 - publicIndex;
+        prefix = "../".repeat(depth);
+      }
+      
+      const response = await fetch(prefix + 'data/raya_knowledge.json');
+      if (!response.ok) throw new Error('Knowledge sync failed');
+      knowledgeBase = await response.json();
+      
+      if (panel.classList.contains('active') && history.length === 0) {
+        renderSuggestions();
+      }
+    } catch (err) {
+      console.error('Raya Intelligence Sync Error:', err);
+      // Minimal fallback
+      knowledgeBase = {
+        intents: [],
+        suggestions: ["What is Raya?", "How to contribute?"],
+        fallbacks: ["Neural link synchronizing... Please stand by for the next intelligence upgrade."]
+      };
+    }
+  }
 
   function getTime() {
     const d = new Date();
@@ -287,12 +308,10 @@
   function renderMessage(m) {
     const wrapper = document.createElement('div');
     wrapper.className = `msg-wrapper ${m.role}`;
-    
     wrapper.innerHTML = `
       <div class="msg-bubble">${m.text}</div>
       <div class="msg-time">${m.time || getTime()}</div>
     `;
-    
     messages.appendChild(wrapper);
     messages.scrollTop = messages.scrollHeight;
   }
@@ -306,21 +325,19 @@
       }, 500);
     } else {
       history.forEach(m => renderMessage(m));
-      queriesContainer.style.display = 'none'; // Hide if already talking
+      queriesContainer.style.display = 'none';
     }
   }
 
   function renderSuggestions() {
+    if (!knowledgeBase || !knowledgeBase.suggestions) return;
     queriesContainer.innerHTML = '';
     queriesContainer.style.display = 'flex';
-    suggestedQuestions.forEach(q => {
+    knowledgeBase.suggestions.forEach(q => {
       const pill = document.createElement('div');
       pill.className = 'query-pill';
       pill.textContent = q;
-      pill.onclick = () => {
-        handleSend(q);
-        queriesContainer.style.display = 'none';
-      };
+      pill.onclick = () => handleSend(q);
       queriesContainer.appendChild(pill);
     });
   }
@@ -338,13 +355,7 @@
     const div = document.createElement('div');
     div.id = 'typingIndicator';
     div.className = 'msg-wrapper raya';
-    div.innerHTML = `
-      <div class="typing">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-    `;
+    div.innerHTML = `<div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;
     messages.appendChild(div);
     messages.scrollTop = messages.scrollHeight;
   }
@@ -355,66 +366,17 @@
   }
 
   function getRayaResponse(userText) {
-    const text = userText.toLowerCase().trim();
+    if (!knowledgeBase) return "Initializing analysis... Neural link synchronization in progress.";
     
-    const KNOWLEDGE_BASE = [
-      {
-        id: 'mission',
-        triggers: ['mission', 'goal', 'objective', 'vision', 'what are you', 'who are you', 'purpose'],
-        responses: [
-          "Our mission is to build the first Open Knowledge Intelligence — a community-driven, decentralized 'world brain' for planetary coordination.",
-          "Raya is a transition from isolated information systems to unified planetary intelligence. We coordinate energy, resources, and knowledge at scale.",
-          "We are designing an open-source architecture for a Type-I Civilization. Our goal is transparent, auditable intelligence for everyone."
-        ]
-      },
-      {
-        id: 'systems',
-        triggers: ['energy', 'water', 'farming', 'sustainability', 'grid', 'planet', 'resources'],
-        responses: [
-          "Raya monitors and simulates core planetary systems like Energy transitions, Water scarcity, and Climate-aware Farming.",
-          "Our Energy module focuses on grid synchronization and renewable transitions. You can even try the 'Grid Synchronization Experiment' on our homepage!",
-          "We approach Earth as a single, shared system. Our research covers everything from atmospheric CO2 to global resource distribution."
-        ]
-      },
-      {
-        id: 'principles',
-        triggers: ['ethics', 'philosophy', 'integrity', 'limits', 'integrity', 'values', 'rules', 'principles'],
-        responses: [
-          "RAYA is guided by foundational principles: Planetary stability over short-term optimization, and scientific integrity over ideology.",
-          "We prioritize planetary limits over unchecked growth. Our models are auditable and community-governed to ensure responsibility.",
-          "In our architecture, human sustainability is the primary metric. Scientific integrity and humanity's shared future are non-negotiable."
-        ]
-      },
-      {
-        id: 'join',
-        triggers: ['join', 'help', 'contribute', 'developer', 'research', 'involved', 'participate'],
-        responses: [
-          "Raya is a community-first initiative. You can follow our journey through the devlogs or contribute to our open-source research modules.",
-          "We are seeking researchers, builders, and citizens who believe in a shared planetary future. Check our updates page for the latest onboarding info.",
-          "The first Open Knowledge network is built by many. Stay tuned for our upcoming developer platform and research grants."
-        ]
-      },
-      {
-        id: 'greeting',
-        triggers: ['hello', 'hi', 'greetings', 'hey', 'anybody'],
-        responses: [
-          "Neural link active. Welcome to the Raya Intelligence interface. How may I coordinate with you today?",
-          "Greetings, Researcher. I am monitoring the planetary synchronization status. What is your query?",
-          "Welcome back to the Open Knowledge hub. I am ready to parse your request."
-        ]
-      }
-    ];
-
-    // Simple Intent Scoring
+    const text = userText.toLowerCase().trim();
     let bestIntent = null;
     let maxMatches = 0;
 
-    KNOWLEDGE_BASE.forEach(intent => {
+    knowledgeBase.intents.forEach(intent => {
       let matches = 0;
       intent.triggers.forEach(trigger => {
         if (text.includes(trigger)) matches++;
       });
-      
       if (matches > maxMatches) {
         maxMatches = matches;
         bestIntent = intent;
@@ -426,14 +388,7 @@
       return pool[Math.floor(Math.random() * pool.length)];
     }
 
-    // Dynamic Thematic Fallbacks
-    const fallbacks = [
-      "Analyzing query parameters... This specific domain is currently being mapped by our research team.",
-      "Interesting observation. I have logged this for the core development logs. This helps improve the planetary intelligence model.",
-      "Operational parameters are evolving. While I don't have a direct data point for that yet, it aligns with our goal of planetary clarity.",
-      "Raya is still in seed phase. Your input contributes to our next intelligence upgrade. Stay tuned to the journey."
-    ];
-
+    const fallbacks = knowledgeBase.fallbacks || ["Interesting query. I have logged this for our research team."];
     return fallbacks[Math.floor(Math.random() * fallbacks.length)];
   }
 
@@ -450,7 +405,6 @@
       setTimeout(() => {
         hideTyping();
         addMessage('raya', getRayaResponse(text));
-        // Re-show suggestions after Raya responds
         setTimeout(renderSuggestions, 400); 
       }, 1500 + Math.random() * 1000);
     }, 400);
@@ -480,5 +434,7 @@
       setTimeout(() => orb.style.boxShadow = '', 2000);
     }
   }, 10000);
+
+  loadKnowledge();
 })();
 </script>
