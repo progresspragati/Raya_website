@@ -19,6 +19,10 @@
             <span class="status-tag">STATUS: <span class="active-pulse">ACTIVE</span></span>
         </div>
         <div class="system-time-container">
+            <div id="system-alerts" class="system-alerts-inline">
+                <span class="alert-dot green"></span>
+                <span class="alert-text">NO ANOMALY DETECTED</span>
+            </div>
             <span id="live-time" class="mono-text">00:00:00 UTC</span>
             <span class="active-dot"></span>
             <button id="logout-btn" class="logout-btn" title="Exit Secure Environment">LOGOUT</button>
@@ -47,6 +51,21 @@
                 <span class="card-label">System Health</span>
                 <span class="card-value" id="val-health">98.2 <small>%</small></span>
                 <span class="card-trend text-green">Nominal</span>
+            </div>
+        </section>
+
+        <!-- SYSTEM RECOMMENDATION LAYER -->
+        <section class="recommendation-layer">
+            <div class="recommendation-card" id="main-recommendation">
+                <div class="rec-header">
+                    <span class="rec-title">SYSTEM ACTION RECOMMENDED</span>
+                    <span class="rec-tag">PRIORITY: HIGH</span>
+                </div>
+                <div class="rec-content">
+                    <div class="rec-icon">→</div>
+                    <div class="rec-text" id="recommendation-text">Shift 12% load from Tokyo to Singapore in next 2 hours to mitigate peak surge.</div>
+                    <button class="btn-execute-rec">EXECUTE ACTION</button>
+                </div>
             </div>
         </section>
 
@@ -126,7 +145,14 @@
                 </div>
 
                 <div class="content-block">
-                    <h3 class="block-title">Energy Consumption Trend</h3>
+                    <div class="block-header-with-ctrl">
+                        <h3 class="block-title">Energy Consumption Trend</h3>
+                        <div class="time-intelligence">
+                            <button class="time-btn active" data-range="current">Current</button>
+                            <button class="time-btn" data-range="6h">Next 6h</button>
+                            <button class="time-btn" data-range="24h">Next 24h</button>
+                        </div>
+                    </div>
                     <div class="chart-container">
                         <canvas id="energyChart"></canvas>
                     </div>
@@ -136,7 +162,7 @@
             <!-- RIGHT COLUMN (40%) -->
             <aside class="right-column">
                 <div class="content-block prediction-engine">
-                    <h3 class="block-title text-cyan">Prediction Engine</h3>
+                    <h3 class="block-title text-cyan">Simulation Engine</h3>
                     <form id="prediction-form" class="prediction-form">
                         <div class="form-group">
                             <label>Region</label>
@@ -170,14 +196,28 @@
                                 </label>
                             </div>
                         </div>
-                        <button type="submit" class="btn-simulate">Run Simulation</button>
+                        <button type="submit" class="btn-simulate">Run Scenario</button>
                     </form>
 
                     <div id="prediction-output" class="prediction-output dormant">
-                        <div class="output-header">Predicted Demand</div>
-                        <div class="output-value" id="pred-result">--- <small>MW</small></div>
-                        <div class="output-summary" id="pred-summary">
-                            Awaiting simulation parameters...
+                        <div class="output-grid">
+                            <div class="output-main">
+                                <div class="output-label">Predicted Demand</div>
+                                <div class="output-value" id="pred-result">--- <small>MW</small></div>
+                            </div>
+                            <div class="output-stats">
+                                <div class="stat-mini">
+                                    <span class="label">Confidence</span>
+                                    <span class="value" id="pred-confidence">--%</span>
+                                </div>
+                                <div class="stat-mini">
+                                    <span class="label">Risk Level</span>
+                                    <span class="value" id="pred-risk">---</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="output-reasoning" id="pred-reasoning">
+                            Awaiting scenario parameters...
                         </div>
                     </div>
                 </div>
