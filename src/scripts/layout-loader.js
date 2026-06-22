@@ -19,6 +19,9 @@ function initializeNavbar() {
 
   if (!toggle || !menu) return;
 
+  const mobileDropdownToggle = document.getElementById("mobile-dropdown-toggle");
+  const mobileDropdownMenu = document.getElementById("mobile-dropdown-menu");
+
   // Toggle Menu
   toggle.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -26,6 +29,22 @@ function initializeNavbar() {
     toggle.classList.toggle("active");
     toggle.setAttribute("aria-expanded", isActive);
   });
+
+  // Mobile Dropdown Toggle
+  if (mobileDropdownToggle && mobileDropdownMenu) {
+    mobileDropdownToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isActive = mobileDropdownMenu.classList.toggle("active");
+      const chevron = mobileDropdownToggle.querySelector(".chevron-icon");
+      if (chevron) {
+        if (isActive) {
+          chevron.style.transform = "rotate(180deg)";
+        } else {
+          chevron.style.transform = "";
+        }
+      }
+    });
+  }
 
   // Close on Outside Click
   document.addEventListener("click", (e) => {
@@ -37,6 +56,13 @@ function initializeNavbar() {
       menu.classList.remove("active");
       toggle.classList.remove("active");
       toggle.setAttribute("aria-expanded", "false");
+
+      // Reset mobile dropdown
+      if (mobileDropdownMenu) {
+        mobileDropdownMenu.classList.remove("active");
+        const chevron = mobileDropdownToggle?.querySelector(".chevron-icon");
+        if (chevron) chevron.style.transform = "";
+      }
     }
   });
 
@@ -46,6 +72,13 @@ function initializeNavbar() {
       menu.classList.remove("active");
       toggle.classList.remove("active");
       toggle.setAttribute("aria-expanded", "false");
+
+      // Reset mobile dropdown
+      if (mobileDropdownMenu) {
+        mobileDropdownMenu.classList.remove("active");
+        const chevron = mobileDropdownToggle?.querySelector(".chevron-icon");
+        if (chevron) chevron.style.transform = "";
+      }
     }
   });
 
