@@ -380,3 +380,13 @@ body {
   .governance-grid { grid-template-columns: 1fr; }
   .hero-headline { font-size: 2.8rem; }
 }
+
+/* --- Navbar Alignment Override --- */
+#navbar-placeholder .max-w-6xl {
+  max-width: 1080px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+}
+
