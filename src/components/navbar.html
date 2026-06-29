@@ -110,7 +110,8 @@
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .dropdown:hover .chevron-icon {
+    .dropdown:hover .chevron-icon,
+    .dropdown.active .chevron-icon {
       transform: rotate(180deg);
       color: #22d3ee;
     }
@@ -135,7 +136,19 @@
       z-index: 100;
     }
 
-    .dropdown:hover .dropdown-menu {
+    /* Invisible bridge to prevent mouseleave when moving cursor over the gap */
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: 0;
+      right: 0;
+      height: 12px;
+      background: transparent;
+    }
+
+    .dropdown:hover .dropdown-menu,
+    .dropdown.active .dropdown-menu {
       opacity: 1;
       visibility: visible;
       transform: translateX(-50%) translateY(8px);
@@ -475,3 +488,5 @@
     Join the Mission
   </a>
 </div>
+
+<!-- </body> -->

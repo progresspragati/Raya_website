@@ -21,6 +21,8 @@ function initializeNavbar() {
 
   const mobileDropdownToggle = document.getElementById("mobile-dropdown-toggle");
   const mobileDropdownMenu = document.getElementById("mobile-dropdown-menu");
+  const desktopDropdown = document.querySelector(".dropdown");
+  const desktopDropdownTrigger = document.querySelector(".dropdown-trigger");
 
   // Toggle Menu
   toggle.addEventListener("click", (e) => {
@@ -46,8 +48,17 @@ function initializeNavbar() {
     });
   }
 
+  // Desktop Dropdown Toggle
+  if (desktopDropdown && desktopDropdownTrigger) {
+    desktopDropdownTrigger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      desktopDropdown.classList.toggle("active");
+    });
+  }
+
   // Close on Outside Click
   document.addEventListener("click", (e) => {
+    // Close mobile menu
     if (
       menu.classList.contains("active") &&
       !menu.contains(e.target) &&
@@ -64,20 +75,31 @@ function initializeNavbar() {
         if (chevron) chevron.style.transform = "";
       }
     }
+
+    // Close desktop dropdown
+    if (desktopDropdown && !desktopDropdown.contains(e.target)) {
+      desktopDropdown.classList.remove("active");
+    }
   });
 
   // Close on ESC
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && menu.classList.contains("active")) {
-      menu.classList.remove("active");
-      toggle.classList.remove("active");
-      toggle.setAttribute("aria-expanded", "false");
+    if (e.key === "Escape") {
+      if (menu.classList.contains("active")) {
+        menu.classList.remove("active");
+        toggle.classList.remove("active");
+        toggle.setAttribute("aria-expanded", "false");
 
-      // Reset mobile dropdown
-      if (mobileDropdownMenu) {
-        mobileDropdownMenu.classList.remove("active");
-        const chevron = mobileDropdownToggle?.querySelector(".chevron-icon");
-        if (chevron) chevron.style.transform = "";
+        // Reset mobile dropdown
+        if (mobileDropdownMenu) {
+          mobileDropdownMenu.classList.remove("active");
+          const chevron = mobileDropdownToggle?.querySelector(".chevron-icon");
+          if (chevron) chevron.style.transform = "";
+        }
+      }
+
+      if (desktopDropdown) {
+        desktopDropdown.classList.remove("active");
       }
     }
   });
