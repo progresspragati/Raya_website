@@ -254,13 +254,40 @@ window.addEventListener("touchstart",e=>{
 
 });
 
-window.addEventListener("touchend",e=>{
+let touchStartX = 0;
+let touchStartY = 0;
 
-    let diff=touchStart-e.changedTouches[0].clientX;
+window.addEventListener("touchstart", e => {
 
-    if(Math.abs(diff)<60)return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
 
-    if(diff>0){
+}, {passive:true});
+
+
+window.addEventListener("touchend", e => {
+
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+
+    const diffX = touchStartX - touchEndX;
+    const diffY = touchStartY - touchEndY;
+
+
+    /*
+     * Only treat a gesture as a slide swipe
+     * when horizontal movement is greater
+     * than vertical movement.
+     */
+
+    if(Math.abs(diffX) < 60)
+        return;
+
+    if(Math.abs(diffX) <= Math.abs(diffY))
+        return;
+
+
+    if(diffX > 0){
 
         nextSlide();
 

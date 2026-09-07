@@ -4584,3 +4584,750 @@ body.planetary-mode .gradient-bg {
     }
 
 }
+
+/* ==========================================================
+   PHONE RESPONSIVE — VISION PAGE
+========================================================== */
+
+@media (max-width: 600px) {
+
+    /* ------------------------------------------------------
+       GLOBAL
+    ------------------------------------------------------ */
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    #viewport {
+        width: 100%;
+        height: 100svh;
+        overflow: hidden;
+    }
+
+    #slides {
+        width: 600vw;
+        height: 100svh;
+    }
+
+    .slide {
+        width: 100vw;
+        height: 100svh;
+        min-width: 100vw;
+        flex: 0 0 100vw;
+
+        padding: 85px 20px 45px;
+
+        overflow: hidden;
+    }
+
+
+    /* ------------------------------------------------------
+       NAVBAR
+    ------------------------------------------------------ */
+
+    .navbar {
+        height: 64px;
+        padding: 0 18px;
+    }
+
+    .logo {
+        gap: 9px;
+    }
+
+    .logo img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .logo h2 {
+        font-size: 1.25rem;
+        letter-spacing: 1.5px;
+    }
+
+    nav {
+        display: none;
+    }
+
+
+    /* ------------------------------------------------------
+       LEFT / RIGHT SLIDE BUTTONS
+    ------------------------------------------------------ */
+
+    .nav-btn {
+        width: 38px;
+        height: 38px;
+
+        font-size: .9rem;
+
+        top: 50%;
+    }
+
+    .left {
+        left: 8px;
+    }
+
+    .right {
+        right: 8px;
+    }
+
+
+    /* ------------------------------------------------------
+       SLIDE 1 — HERO
+    ------------------------------------------------------ */
+
+    .hero {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        gap: 5px;
+
+        text-align: center;
+    }
+
+    .hero .content {
+        width: 100%;
+        max-width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .eyebrow {
+        font-size: .58rem;
+        letter-spacing: 2.5px;
+
+        margin-bottom: 14px;
+    }
+
+    .content h1 {
+        font-size: 2.15rem;
+        line-height: 1.08;
+
+        margin-bottom: 16px;
+    }
+
+    .content p {
+        max-width: 340px;
+
+        font-size: .82rem;
+        line-height: 1.65;
+    }
+
+    .primary-btn {
+        width: auto;
+
+        margin-top: 22px;
+
+        padding: 12px 25px;
+
+        font-size: .78rem;
+    }
+
+
+    /* PLANET ON HERO */
+
+    .planetary-visual {
+        width: 100%;
+        min-width: 0;
+        height: 300px;
+
+        display: flex;
+        justify-content: center;
+
+        transform: scale(.52);
+        transform-origin: center center;
+
+        margin-top: -25px;
+    }
+
+    .space-scene {
+        width: 650px;
+        height: 650px;
+    }
+
+    .continue {
+        right: 50%;
+        bottom: 16px;
+
+        transform: translateX(50%);
+
+        font-size: .7rem;
+        letter-spacing: 2px;
+    }
+
+    .continue:hover {
+        transform: translateX(50%);
+    }
+
+
+    /* ------------------------------------------------------
+       SLIDE 2 — PROBLEM
+    ------------------------------------------------------ */
+
+    .problem {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .section-title {
+        font-size: .62rem;
+        letter-spacing: 3px;
+
+        margin-bottom: 7px;
+    }
+
+    .slide h2 {
+        font-size: 1.65rem;
+        line-height: 1.15;
+
+        margin-bottom: 12px;
+    }
+
+    .problem-subtitle {
+        max-width: 330px;
+
+        margin-bottom: 18px;
+
+        font-size: .65rem;
+        line-height: 1.5;
+    }
+
+    .problem-system-grid {
+        width: 100%;
+        max-width: 330px;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+    .problem-panel {
+        width: 100%;
+        height: 205px;
+
+        padding: 14px 12px;
+    }
+
+    .problem-icon {
+        height: 75px;
+
+        margin-bottom: 8px;
+
+        font-size: 2rem;
+    }
+
+    .problem-icon::after {
+        width: 75px;
+        height: 16px;
+        bottom: 0;
+    }
+
+    .problem-code {
+        font-size: .38rem;
+        letter-spacing: 1.3px;
+
+        margin-bottom: 5px;
+    }
+
+    .problem-panel h3 {
+        font-size: .78rem;
+
+        margin-bottom: 5px;
+    }
+
+    .problem-panel p {
+        font-size: .56rem;
+    }
+
+    .problem-signal {
+        padding-top: 10px;
+    }
+
+
+    /* ------------------------------------------------------
+       SLIDE 3 — ARCHITECTURE
+    ------------------------------------------------------ */
+
+    .architecture {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .architecture h2 {
+        margin-bottom: 5px;
+    }
+
+    .neural-architecture {
+        width: 390px;
+        height: 390px;
+
+        max-width: 100%;
+
+        margin: 0 auto;
+
+        transform: scale(.82);
+        transform-origin: center center;
+    }
+
+    .neural-lines {
+        width: 390px;
+        height: 390px;
+
+        transform: scale(.82);
+        transform-origin: center center;
+    }
+
+    .raya-core {
+        width: 105px;
+        height: 105px;
+    }
+
+    .raya-core span {
+        font-size: 1.05rem;
+    }
+
+    .raya-core small {
+        font-size: .36rem;
+
+        margin-top: 5px;
+        letter-spacing: 1.3px;
+    }
+
+    .neural-node {
+        width: 75px;
+        height: 75px;
+
+        gap: 4px;
+    }
+
+    .neural-node span {
+        font-size: .58rem;
+    }
+
+    .node-icon {
+        font-size: .95rem;
+    }
+
+    /*
+       Re-position architecture nodes
+       for phone
+    */
+
+    .node-energy {
+        left: 50%;
+        top: 0;
+
+        transform: translateX(-50%);
+    }
+
+    .node-water {
+        right: 15px;
+        top: 85px;
+    }
+
+    .node-climate {
+        left: 15px;
+        top: 85px;
+    }
+
+    .node-farming {
+        right: 25px;
+        bottom: 55px;
+    }
+
+    .node-humanity {
+        left: 25px;
+        bottom: 55px;
+    }
+
+    .node-economy {
+        left: 50%;
+        bottom: 0;
+
+        transform: translateX(-50%);
+    }
+
+
+    /* ------------------------------------------------------
+       SLIDE 4 — INTELLIGENCE MODULES
+    ------------------------------------------------------ */
+
+    .modules {
+        padding: 78px 16px 35px;
+    }
+
+    .modules h2 {
+        margin-bottom: 15px;
+    }
+
+    .system-grid {
+        width: 100%;
+        max-width: 350px;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 9px;
+    }
+
+    .system-panel {
+        min-height: 190px;
+
+        padding: 12px 11px 11px;
+
+        border-radius: 6px;
+    }
+
+    .system-header {
+        gap: 7px;
+
+        padding-bottom: 9px;
+    }
+
+    .system-icon {
+        width: 27px;
+        height: 27px;
+
+        font-size: .9rem;
+
+        border-radius: 4px;
+    }
+
+    .system-code {
+        font-size: .34rem;
+        letter-spacing: 1px;
+
+        margin-bottom: 2px;
+    }
+
+    .system-header h3 {
+        font-size: .62rem;
+        line-height: 1.2;
+    }
+
+    .live-dot {
+        width: 5px;
+        height: 5px;
+    }
+
+    .system-mode,
+    .system-data {
+        margin-top: 8px;
+
+        font-size: .46rem;
+    }
+
+    .system-mode strong {
+        font-size: .4rem;
+    }
+
+    .system-data strong {
+        font-size: .58rem;
+    }
+
+    .system-status {
+        margin-top: 9px;
+    }
+
+    .status-label {
+        margin-bottom: 4px;
+
+        font-size: .42rem;
+    }
+
+    .status-track {
+        height: 3px;
+    }
+
+    .system-explore {
+        gap: 4px;
+
+        margin-top: 9px;
+
+        font-size: .4rem;
+        letter-spacing: 1px;
+    }
+
+    .system-explore span {
+        font-size: .7rem;
+    }
+
+
+    /* ------------------------------------------------------
+       SLIDE 5 — ROADMAP
+    ------------------------------------------------------ */
+
+    .roadmap {
+        padding: 75px 10px 30px;
+    }
+
+    .roadmap h2 {
+        margin-bottom: 5px;
+    }
+
+    .mission-roadmap {
+        width: 100%;
+        max-width: 350px;
+
+        height: 420px;
+
+        margin-top: 0;
+    }
+
+    .mission-axis {
+        left: 27%;
+
+        top: 10px;
+
+        height: 370px;
+    }
+
+    .mission-stage {
+        grid-template-columns:
+            72px
+            55px
+            28px
+            1fr;
+
+        height: 85px;
+    }
+
+    .stage-1 {
+        top: 0;
+    }
+
+    .stage-2 {
+        top: 95px;
+    }
+
+    .stage-3 {
+        top: 190px;
+    }
+
+    .stage-4 {
+        top: 285px;
+    }
+
+    .mission-year {
+        padding-right: 8px;
+    }
+
+    .mission-year span {
+        font-size: .8rem;
+
+        letter-spacing: 1px;
+    }
+
+    .mission-year small {
+        margin-top: 3px;
+
+        font-size: .32rem;
+        letter-spacing: 1px;
+    }
+
+    .year-line {
+        width: 100%;
+    }
+
+    .mission-node {
+        width: 28px;
+        height: 28px;
+    }
+
+    .mission-node span {
+        width: 7px;
+        height: 7px;
+
+        border-width: 1px;
+    }
+
+    .mission-content {
+        padding-left: 8px;
+    }
+
+    .mission-code {
+        font-size: .34rem;
+        letter-spacing: 1px;
+
+        margin-bottom: 3px;
+    }
+
+    .mission-content h3 {
+        font-size: .67rem;
+        line-height: 1.2;
+
+        margin-bottom: 3px;
+    }
+
+    .mission-content p {
+        font-size: .45rem;
+        line-height: 1.4;
+    }
+
+    .mission-stage:not(.stage-4)
+    .mission-node::after {
+        top: 45px;
+    }
+
+
+    /* ------------------------------------------------------
+       SLIDE 6 — CINEMATIC FINALE
+    ------------------------------------------------------ */
+
+    .cinematic-final {
+        padding: 64px 0 0;
+    }
+
+    .final-space {
+        width: 100%;
+        height: 100%;
+    }
+
+    .final-earth-wrap {
+        width: 620px;
+        height: 620px;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.48);
+    }
+
+    #finalEarthCanvas {
+        width: 620px;
+        height: 620px;
+    }
+
+    .final-atmosphere {
+        width: 444px;
+        height: 444px;
+    }
+
+    .final-message {
+        width: 94%;
+
+        top: 45%;
+    }
+
+    .final-line {
+        gap: 7px;
+
+        margin: 3px 0;
+    }
+
+    .final-line span {
+        font-size: .42rem;
+        letter-spacing: 2.5px;
+    }
+
+    .final-line strong {
+        font-size: 1.45rem;
+        letter-spacing: 1.5px;
+    }
+
+    .final-cta {
+        bottom: 35px;
+    }
+
+    .final-divider {
+        height: 18px;
+        margin-bottom: 10px;
+    }
+
+    .journey-btn {
+        gap: 10px;
+
+        padding: 11px 18px;
+
+        font-size: .52rem;
+        letter-spacing: 2px;
+    }
+
+    .journey-btn span {
+        font-size: .75rem;
+    }
+
+
+    /* ------------------------------------------------------
+       HIDE DESKTOP-ONLY ELEMENTS
+    ------------------------------------------------------ */
+
+    .progress {
+        display: none;
+    }
+
+    .mouse-glow {
+        display: none;
+    }
+
+}
+
+
+/* ==========================================================
+   VERY SMALL PHONES
+========================================================== */
+
+@media (max-width: 380px) {
+
+    .content h1 {
+        font-size: 1.9rem;
+    }
+
+    .content p {
+        font-size: .76rem;
+    }
+
+    .planetary-visual {
+        transform: scale(.45);
+        margin-top: -45px;
+    }
+
+    .problem-system-grid {
+        max-width: 300px;
+        gap: 8px;
+    }
+
+    .problem-panel {
+        height: 190px;
+    }
+
+    .system-grid {
+        max-width: 310px;
+        gap: 7px;
+    }
+
+    .system-panel {
+        min-height: 180px;
+        padding: 10px 9px;
+    }
+
+    .mission-roadmap {
+        max-width: 320px;
+    }
+
+    .mission-stage {
+        grid-template-columns:
+            65px
+            48px
+            25px
+            1fr;
+    }
+
+    .mission-content h3 {
+        font-size: .6rem;
+    }
+
+    .mission-content p {
+        font-size: .4rem;
+    }
+
+    .final-line strong {
+        font-size: 1.25rem;
+    }
+
+}
