@@ -4584,3 +4584,178 @@ body.planetary-mode .gradient-bg {
     }
 
 }
+
+/* ==========================================================
+   MOBILE NAVBAR
+========================================================== */
+
+.mobile-toggle {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 9px;
+
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.25);
+
+    cursor: pointer;
+
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+    z-index: 1002;
+}
+
+.mobile-toggle span {
+    display: block;
+
+    width: 22px;
+    height: 2px;
+
+    background: #ffffff;
+
+    transition: .3s;
+}
+
+
+/* Mobile menu */
+
+.mobile-menu {
+    display: none;
+}
+
+
+/* ==========================================================
+   PHONE
+========================================================== */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: 75px;
+
+        padding: 0 18px;
+
+        background: rgba(10, 17, 32, .96);
+
+        backdrop-filter: blur(18px);
+
+        z-index: 1001;
+    }
+
+
+    /* RAYA logo */
+
+    .logo {
+        gap: 10px;
+    }
+
+    .logo img {
+        width: 38px;
+        height: 38px;
+    }
+
+    .logo h2 {
+        font-size: 1.35rem;
+        letter-spacing: 1px;
+    }
+
+
+    /* Hide desktop menu */
+
+    .desktop-nav {
+        display: none !important;
+    }
+
+
+    /* Hamburger */
+
+    .mobile-toggle {
+        display: flex;
+    }
+
+
+    /* Hamburger animation */
+
+    .mobile-toggle.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .mobile-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-toggle.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+
+    /* Open mobile menu */
+
+    .mobile-menu {
+        position: fixed;
+
+        top: 75px;
+        left: 0;
+
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        padding: 12px 20px 20px;
+
+        background: rgba(10, 17, 32, .98);
+
+        backdrop-filter: blur(18px);
+
+        border-top: 1px solid rgba(255,255,255,.08);
+
+        transform: translateY(-120%);
+
+        opacity: 0;
+
+        pointer-events: none;
+
+        transition:
+            transform .3s ease,
+            opacity .3s ease;
+
+        z-index: 1000;
+    }
+
+
+    .mobile-menu.active {
+        transform: translateY(0);
+
+        opacity: 1;
+
+        pointer-events: auto;
+    }
+
+
+    .mobile-menu a {
+        display: block;
+
+        padding: 15px 8px;
+
+        color: #d4dde8;
+
+        text-decoration: none;
+
+        font-size: 1rem;
+
+        font-weight: 500;
+
+        border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+
+    .mobile-menu a.active {
+        color: #22e8ff;
+    }
+
+}
