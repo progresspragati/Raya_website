@@ -217,20 +217,27 @@ document.addEventListener("keydown",e=>{
 MOUSE WHEEL
 ========================================== */
 
-window.addEventListener("wheel",e=>{
+window.addEventListener("wheel", e => {
+
+    // Last slide + scrolling down = allow page to reach footer
+    if(current === slideList.length - 1 && e.deltaY > 0){
+        return;
+    }
+
+    // First slide + scrolling up = allow normal page behavior
+    if(current === 0 && e.deltaY < 0){
+        return;
+    }
 
     e.preventDefault();
 
-    if(locked)return;
+    if(locked) return;
 
-    if(e.deltaY>0){
-
-        nextSlide();
-
-    }else{
-
-        previousSlide();
-
+    if(e.deltaY > 0 && current < slideList.length - 1){
+        goTo(current + 1);
+    }
+    else if(e.deltaY < 0 && current > 0){
+        goTo(current - 1);
     }
 
 },{passive:false});
@@ -1106,80 +1113,60 @@ if (architecture) {
 
     architectureNodes.forEach(node => {
 
-        node.addEventListener("mouseenter", () => {
+    node.addEventListener("mouseenter", () => {
 
-            const target =
-                node.dataset.node;
+        const target = node.dataset.node;
 
+        architecture.classList.add("has-active");
 
-            architecture.classList.add(
-                "has-active"
-            );
+        node.classList.add("active");
 
+        if (target === "energy") {
 
-            /* Activate selected node */
+            neuralPaths.forEach(path => {
+                path.classList.add("active");
+            });
 
-            node.classList.add("active");
+            architectureNodes.forEach(n => {
+                n.classList.add("active");
+            });
 
-            if (target === "energy") {
-
-                neuralPaths.forEach(path => {
-                    path.classList.add("active");
-                });
-            
-                architectureNodes.forEach(n => {
-                    n.classList.add("active");
-                });
-            
-            }
-            /* Activate its connection */
-            else {
+        } else {
 
             neuralPaths.forEach(path => {
 
-                if (
-                    path.dataset.node === target
-                ) {
+                if (path.dataset.node === target) {
 
-                    path.classList.add(
-                        "active"
-                    );
+                    path.classList.add("active");
 
                 }
 
             });
 
-        };
+        }
+
     });
 
 
-        node.addEventListener("mouseleave", () => {
+    node.addEventListener("mouseleave", () => {
 
-            architecture.classList.remove(
-                "has-active"
-            );
+        architecture.classList.remove("has-active");
 
+        architectureNodes.forEach(n => {
 
-            architectureNodes.forEach(n => {
+            n.classList.remove("active");
 
-                n.classList.remove(
-                    "active"
-                );
+        });
 
-            });
+        neuralPaths.forEach(path => {
 
-
-            neuralPaths.forEach(path => {
-
-                path.classList.remove(
-                    "active"
-                );
-
-            });
+            path.classList.remove("active");
 
         });
 
     });
+
+});
 
 }
 /* ==========================================================
