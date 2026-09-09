@@ -408,11 +408,19 @@ if (earthCanvas) {
 
 
         earthRadius =
-            Math.min(
-                185,
-                height * .29,
-                width * .18
-            );
+    window.innerWidth <= 800
+
+        ? Math.min(
+            115,
+            height * .20,
+            width * .28
+        )
+
+        : Math.min(
+            185,
+            height * .29,
+            width * .18
+        );
 
     }
 
@@ -786,8 +794,10 @@ function drawNetwork() {
      * All boxes are outside the Earth.
      */
 
-    const boxWidth = 128;
-    const boxHeight = 42;
+    const isMobile = window.innerWidth <= 800;
+
+const boxWidth = isMobile ? 88 : 128;
+const boxHeight = isMobile ? 34 : 42;
 
     /*
      * Distance between Earth and the BOX CENTER.
@@ -801,7 +811,39 @@ function drawNetwork() {
        FIXED SYMMETRICAL ORDER
     ================================================== */
 
-    const layout = [
+    const layout = window.innerWidth <= 800 ? [
+
+        {
+            name: "Climate",
+            angle: -Math.PI / 2
+        },
+
+        {
+            name: "Energy",
+            angle: -Math.PI / 6
+        },
+
+        {
+            name: "Economy",
+            angle: Math.PI / 6
+        },
+
+        {
+            name: "Water",
+            angle: Math.PI / 2
+        },
+
+        {
+            name: "Agriculture",
+            angle: 5 * Math.PI / 6
+        },
+
+        {
+            name: "Health",
+            angle: 7 * Math.PI / 6
+        }
+    ]
+    : [
 
         {
             name: "Climate",
@@ -861,20 +903,25 @@ function drawNetwork() {
         let orbitRadius;
 
 
-        if (
-            item.name === "Climate" ||
-            item.name === "Water"
-        ) {
+        if (isMobile) {
 
-            orbitRadius =
-                earthRadius + 65;
+    orbitRadius =
+        earthRadius + 42;
 
-        } else {
+} else if (
+    item.name === "Climate" ||
+    item.name === "Water"
+) {
 
-            orbitRadius =
-                earthRadius + 135;
+    orbitRadius =
+        earthRadius + 65;
 
-        }
+} else {
+
+    orbitRadius =
+        earthRadius + 135;
+
+}
 
 
         return {
@@ -1390,7 +1437,49 @@ if (fragmentationCanvas) {
        SYSTEM NODES
     ====================================================== */
 
-    const fragmentationNodes = [
+    const fragmentationNodes = window.innerWidth <= 800
+
+    ? [
+
+        {
+            name: "Climate",
+            x: .50,
+            y: .27
+        },
+
+        {
+            name: "Energy",
+            x: .34,
+            y: .43
+        },
+
+        {
+            name: "Water",
+            x: .66,
+            y: .43
+        },
+
+        {
+            name: "Agriculture",
+            x: .34,
+            y: .64
+        },
+
+        {
+            name: "Markets",
+            x: .66,
+            y: .64
+        },
+
+        {
+            name: "Health",
+            x: .50,
+            y: .80
+        }
+
+    ]
+
+    : [
 
         {
             name: "Climate",
@@ -2060,8 +2149,10 @@ if (fragmentationCanvas) {
             ) * .12;
 
 
-        const boxWidth = 120;
-        const boxHeight = 42;
+       const isMobile = window.innerWidth <= 800;
+
+const boxWidth = isMobile ? 92 : 120;
+const boxHeight = isMobile ? 36 : 42;
 
 
         /* ------------------------------------------
@@ -2340,14 +2431,14 @@ if (energyCanvas) {
         {
             name: "POWER PLANTS",
             type: "plant",
-            x: .28,
+            x: .18,
             y: .68
         },
 
         {
             name: "WIND",
             type: "wind",
-            x: .73,
+            x: .82,
             y: .30
         },
 
@@ -2355,21 +2446,21 @@ if (energyCanvas) {
             name: "TRANSMISSION",
             type: "grid",
             x: .82,
-            y: .67
+            y: .68
         },
 
         {
             name: "CITIES",
             type: "city",
             x: .50,
-            y: .20
+            y: .10
         },
 
         {
             name: "STORAGE",
             type: "storage",
             x: .50,
-            y: .82
+            y: .92
         }
 
     ];
@@ -2457,7 +2548,7 @@ if (energyCanvas) {
 
 
         const radius =
-            26 * pulse;
+    Math.min(26, ew * .065) * pulse;
 
 
         /* ------------------------------------------
@@ -2561,7 +2652,7 @@ if (energyCanvas) {
         ------------------------------------------ */
 
         ectx.font =
-            "500 11px Inter, sans-serif";
+    `500 ${Math.max(8, Math.min(11, ew * .028))}px Inter, sans-serif`;
 
         ectx.textAlign =
             "center";
@@ -3058,7 +3149,41 @@ if (foodCanvas) {
        FOOD SYSTEM NODES
     ====================================================== */
 
-    const foodNodes = [
+    const foodNodes = window.innerWidth <= 800
+
+    ? [
+
+        {
+            name: "WEATHER",
+            x: .27,
+            y: .28,
+            icon: "weather"
+        },
+
+        {
+            name: "SATELLITES",
+            x: .73,
+            y: .28,
+            icon: "satellite"
+        },
+
+        {
+            name: "FARMERS",
+            x: .27,
+            y: .72,
+            icon: "farmer"
+        },
+
+        {
+            name: "MARKETS",
+            x: .73,
+            y: .72,
+            icon: "market"
+        }
+
+    ]
+
+    : [
 
         {
             name: "WEATHER",
@@ -3326,8 +3451,10 @@ if (foodCanvas) {
            GLASS PANEL
         ------------------------------------------ */
 
-        const boxWidth = 145;
-        const boxHeight = 54;
+        const isMobile = window.innerWidth <= 800;
+
+const boxWidth = isMobile ? 105 : 145;
+const boxHeight = isMobile ? 48 : 54;
 
 
         fctx.beginPath();

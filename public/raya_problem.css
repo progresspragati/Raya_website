@@ -2908,3 +2908,321 @@ section.climate-cinematic .climate-content {
         ),
         #01060e;
 }
+
+/* ==========================================================
+   MOBILE RESPONSIVE — RAYA PROBLEM PAGE
+========================================================== */
+
+@media (max-width: 800px) {
+
+    /* ------------------------------------------------------
+       GENERAL
+    ------------------------------------------------------ */
+
+    html,
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+
+    /* ------------------------------------------------------
+       HERO
+    ------------------------------------------------------ */
+
+    .problem-hero {
+
+        height: 100svh;
+        min-height: 620px;
+
+    }
+
+    .problem-hero-content {
+
+        width: 92%;
+        transform: translateY(-3vh);
+
+    }
+
+    .problem-hero-content h1 {
+
+        font-size: clamp(
+            2.5rem,
+            10vw,
+            4rem
+        );
+
+        line-height: 1.04;
+
+        letter-spacing: -.045em;
+
+    }
+
+    .problem-hero-content p {
+
+        margin-top: 28px;
+
+        font-size: .62rem;
+
+        line-height: 1.5;
+
+        letter-spacing: .10em;
+
+    }
+
+
+    /* ------------------------------------------------------
+       INTEGRATED EARTH
+    ------------------------------------------------------ */
+
+    .integrated-earth {
+
+        height: 620px;
+
+    }
+
+
+    /* ------------------------------------------------------
+       HUMAN FRAGMENTATION
+    ------------------------------------------------------ */
+
+    .human-fragmentation {
+
+        height: 600px;
+
+    }
+
+    .fragmentation-content {
+
+        top: 32px;
+
+        width: 92%;
+
+    }
+
+    .fragmentation-content h2 {
+
+        font-size: 1.25rem;
+
+        line-height: 1.25;
+
+    }
+
+    .fragmentation-content p {
+
+        font-size: .60rem;
+
+    }
+
+
+    /* ------------------------------------------------------
+       CLIMATE
+    ------------------------------------------------------ */
+
+    .climate-cinematic {
+
+        height: 620px !important;
+
+    }
+
+    .climate-content {
+
+        width: 92% !important;
+
+    }
+
+    .climate-label {
+
+        margin-bottom: 18px;
+
+        font-size: .60rem;
+
+        letter-spacing: .25em;
+
+    }
+
+    .climate-content h2 {
+
+        font-size: clamp(
+            2.4rem,
+            10vw,
+            4rem
+        );
+
+        line-height: 1.05;
+
+    }
+
+
+    /* ------------------------------------------------------
+       ENERGY
+    ------------------------------------------------------ */
+
+    .energy-network {
+
+        height: 650px;
+
+    }
+
+    .energy-network-content {
+
+        width: 92%;
+
+    }
+
+    .energy-label {
+
+        margin-bottom: 18px;
+
+        font-size: .60rem;
+
+        letter-spacing: .25em;
+
+    }
+
+    .energy-network-content h2 {
+
+        font-size: clamp(
+            2.4rem,
+            9.5vw,
+            4rem
+        );
+
+        line-height: 1.05;
+
+    }
+
+
+    /* ------------------------------------------------------
+       FOOD
+    ------------------------------------------------------ */
+
+    .food-cinematic {
+
+        height: 620px;
+
+    }
+
+    .food-content {
+
+        width: 92%;
+
+    }
+
+    .food-label {
+
+        margin-bottom: 18px;
+
+        font-size: .60rem;
+
+        letter-spacing: .25em;
+
+    }
+
+    .food-content h2 {
+
+        font-size: clamp(
+            2.4rem,
+            9.5vw,
+            4rem
+        );
+
+        line-height: 1.05;
+
+    }
+
+
+    /* ------------------------------------------------------
+       ONE PATTERN
+    ------------------------------------------------------ */
+
+    .one-pattern {
+
+        height: 650px;
+
+    }
+
+    .one-pattern-message {
+
+        width: 92%;
+
+    }
+
+    .one-pattern-message h2 {
+
+        font-size: clamp(
+            2.5rem,
+            10vw,
+            4.5rem
+        );
+
+        line-height: 1.04;
+
+    }
+
+    .one-pattern-message p {
+
+        margin-top: 14px;
+
+        font-size: 1rem;
+
+    }
+
+
+    /* ------------------------------------------------------
+       RAYA RESOLUTION
+    ------------------------------------------------------ */
+
+    .raya-resolution {
+
+        height: 700px;
+
+    }
+
+    .raya-resolution-content {
+
+        width: 92% !important;
+
+    }
+
+    .raya-resolution-label {
+
+        margin-bottom: 16px;
+
+        font-size: .68rem;
+
+        letter-spacing: .40em;
+
+    }
+
+    .raya-resolution-content h2 {
+
+        font-size: clamp(
+            2.6rem,
+            11vw,
+            4.8rem
+        );
+
+        line-height: 1;
+
+    }
+
+    .raya-resolution-content p {
+
+        margin-top: 14px;
+
+        font-size: 1rem;
+
+    }
+
+    .raya-vision-button {
+
+        margin-top: 28px;
+
+        padding: 12px 21px;
+
+        font-size: .70rem;
+
+    }
+
+}
